@@ -8,6 +8,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UIElements;
@@ -36,11 +37,6 @@ public class Cell
         active = true;
         debris = null;
         inx = _inx;
-    }
-    public void Remove()
-    {
-        active = false;
-        debris = null;
     }
 }
 struct IntBounds
@@ -118,8 +114,8 @@ class Timer
 public class Destructible : MonoBehaviour
 {
 
-    static readonly float DENSITY = 2f;
-    static readonly float CHUNK_CELLS = 3f;
+    static readonly float SAMPLE_DENSITY = 4f;
+    static readonly float CHUNK_DENSITY = 0.037f;
     static readonly int DIRECTION_SAMPLES = 20;
     static readonly float FORCE = 10f;
     static readonly Vector3Int[] DIRECTIONS = new Vector3Int[]
@@ -138,11 +134,12 @@ public class Destructible : MonoBehaviour
     private Vector3Int gridSize;
     private MeshCollider meshCollider;
     private MeshFilter meshFilter;
+    private Dictionary<Cell, HashSet<Polytope>> cellToChunks;
+    private Dictionary<Polytope, HashSet<Cell>> chunkToCells;
+    private HashSet<Polytope> stuckChunks;
 
     void Start()
     {
-        DestructionManager.GetInstance();
-
         transform.parent = null;
         BoxCollider box = GetComponent<BoxCollider>();
         Vector3 size = Vector3.Scale(box.size, transform.localScale);
@@ -164,7 +161,11 @@ public class Destructible : MonoBehaviour
         meshCollider = gameObject.AddComponent<MeshCollider>();
         meshFilter = GetComponent<MeshFilter>();
 
+        ComputeChunks();
+
         SyncColliders();
+
+        DestructionManager.GetInstance().AddDestructible(this);
     }
 
     private delegate void ForEachDelegate(Cell cell, Vector3Int index);
@@ -184,7 +185,61 @@ public class Destructible : MonoBehaviour
     {
         return new(new IdentityEqualityComparer<T>());
     }
+    private void ComputeChunks()
+    {
+        cellToChunks = MakeMap<Cell, HashSet<Polytope>>();
+        chunkToCells = MakeMap<Polytope, HashSet<Cell>>();
+        stuckChunks = MakeSet<Polytope>();
 
+        var cells = new List<Cell>();
+        ForEachCell((cell, _) =>
+        {
+            cells.Add(cell);
+        });
+        int sampleCount = Mathf.CeilToInt(cells.Count * SAMPLE_DENSITY);
+        int chunkCount = Mathf.CeilToInt(cells.Count * CHUNK_DENSITY);
+
+        var sampleToCell = GenerateSamples(cells, sampleCount);
+        var centers = GenerateChunkCenters(cells, chunkCount);
+
+        var centerLookup = KDTree.Build(centers);
+
+        if (centerLookup == null) return;
+
+        var centerToSamples = MakeMap<Vec3, List<Vec3>>();
+
+        foreach (var sample in sampleToCell.Keys)
+        {
+            var closest = centerLookup.Nearest(sample);
+            if (!centerToSamples.ContainsKey(closest))
+                centerToSamples[closest] = new();
+            centerToSamples[closest].Add(sample);
+        }
+
+        foreach (var (center, samples) in centerToSamples)
+        {
+            var chunk = Mesher.BuildConvexHull(samples.Select(v => (Vector3)v).ToList());
+            var chunkCells = MakeSet<Cell>();
+            chunkToCells[chunk] = chunkCells;
+            foreach (var sample in samples)
+            {
+                var cell = sampleToCell[sample];
+                if (!cellToChunks.ContainsKey(cell))
+                    cellToChunks[cell] = MakeSet<Polytope>();
+                cellToChunks[cell].Add(chunk);
+                chunkCells.Add(cell);
+            }
+        }
+    }
+    private void RemoveChunk(Polytope chunk)
+    {
+        foreach (var cell in chunkToCells[chunk])
+        {
+            cellToChunks[cell].Remove(chunk);
+        }
+        chunkToCells.Remove(chunk);
+        stuckChunks.Remove(chunk);
+    }
     private HashSet<Cell> ExploreIsland(Cell root, HashSet<Cell> cells)
     {
         var island = MakeSet<Cell>();
@@ -287,70 +342,8 @@ public class Destructible : MonoBehaviour
         );
         return (hitSphere, brokenSphere);
     }
-    private Dictionary<Island, KDTree> MapIslandsToCenters(Dictionary<Vec3, Cell> centerToCell, Dictionary<Cell, Island> cellToIsland)
-    {
-        var islandToCenters = MakeMap<Island, List<Vec3>>();
-        foreach (var (center, cell) in centerToCell)
-        {
-            var island = cellToIsland[cell];
-            if (!islandToCenters.ContainsKey(island))
-                islandToCenters[island] = new();
-            islandToCenters[island].Add(center);
-        }
-
-        var islandToTrees = MakeMap<Island, KDTree>();
-        foreach (var (island, centers) in islandToCenters)
-        {
-            islandToTrees[island] = KDTree.Build(centers);
-        }
-
-        return islandToTrees;
-    }
-    private Vec3 Closest(Vec3 target, IEnumerable<Vec3> options)
-    {
-        var minDist = float.PositiveInfinity;
-        Vec3 best = new(Vector3.zero);
-
-        foreach (var option in options)
-        {
-            var dist = ((Vector3)target - option).sqrMagnitude;
-            if (dist < minDist)
-            {
-                minDist = dist;
-                best = option;
-            }
-        }
-
-        return best;
-    }
     private delegate Island GetSampleIslandDelegate(Vec3 sample);
     private delegate KDTree GetIslandCentersDelegate(Island island);
-    private Dictionary<Vec3, Polytope> GetVoronoiChunks(
-        IEnumerable<Vec3> samples,
-        GetSampleIslandDelegate GetSampleIsland,
-        GetIslandCentersDelegate GetIslandCenters
-    )
-    {
-        var centerToSamples = MakeMap<Vec3, List<Vec3>>();
-        foreach (var sample in samples)
-        {
-            var centers = GetIslandCenters(GetSampleIsland(sample));
-            if (centers == null) continue;
-            var closest = centers.Nearest(sample);
-            if (!centerToSamples.ContainsKey(closest))
-                centerToSamples[closest] = new();
-            centerToSamples[closest].Add(sample);
-        }
-
-        var centerToChunk = MakeMap<Vec3, Polytope>();
-        foreach (var (center, chunkSamples) in centerToSamples)
-        {
-            if (chunkSamples.Count < 4) continue;
-            centerToChunk[center] = Mesher.BuildConvexHull(chunkSamples.Select(v => (Vector3)v).ToList());
-        }
-
-        return centerToChunk;
-    }
     private Polytope GetGridPolytope()
     {
         bool[,,] activity = new bool[gridSize.x, gridSize.y, gridSize.z];
@@ -423,28 +416,28 @@ public class Destructible : MonoBehaviour
     {
         return InBounds(inx) ? grid[inx.x, inx.y, inx.z] : null;
     }
-    private Polytope[] StickChunks(Dictionary<Vec3, Polytope> centerToChunk, HashSet<Vec3> chipCenters, Sphere brokenSphere)
+    private Polytope[] StickChunks(HashSet<Polytope> brokenChunks)
     {
         var debris = MakeSet<Polytope>();
-        debris.UnionWith(centerToChunk.Values);
 
-        foreach (var (center, chunk) in centerToChunk)
+        foreach (var chunk in brokenChunks)
         {
-            if (!chipCenters.Contains(center)) continue;
+            if (stuckChunks.Contains(chunk)) continue;
 
-            foreach (var vertex in chunk.vertices)
+            foreach (var cell in chunkToCells[chunk])
             {
-                if (brokenSphere.ContainsPoint(vertex)) continue;
-
-                var inx = Vector3Int.FloorToInt(vertex / cellSize);
-                var cell = SafeIndex(inx);
-                if (cell != null && cell.active && cell.debris == null)
+                if (cell.active && cell.debris == null)
                 {
+                    stuckChunks.Add(chunk);
                     cell.debris = chunk;
-                    debris.Remove(cell.debris);
                     break;
                 }
             }
+
+            if (stuckChunks.Contains(chunk)) continue;
+
+            RemoveChunk(chunk);
+            debris.Add(chunk);
         }
 
         SyncColliders();
@@ -462,17 +455,26 @@ public class Destructible : MonoBehaviour
         }
         return sampleToCell;
     }
-    private HashSet<Vec3> GenerateChunkCenters(List<Cell> cells, int centerCount, Dictionary<Vec3, Cell> centerToCell)
+    private List<Vec3> GenerateChunkCenters(List<Cell> cells, int centerCount)
     {
-        var centers = MakeSet<Vec3>();
+        var centers = new List<Vec3>();
         for (int i = 0; i < centerCount; i++)
         {
             var cell = cells[Random.Range(0, cells.Count)];
             var center = new Vec3(GetCellCenter(cell));
             centers.Add(center);
-            centerToCell[center] = cell;
         }
         return centers;
+    }
+    public HashSet<Polytope> GetChunks(List<Cell> cells)
+    {
+        var result = MakeSet<Polytope>();
+        var empty = MakeSet<Polytope>();
+        foreach (var cell in cells)
+        {
+            result.AddRange(cellToChunks.GetValueOrDefault(cell, empty));
+        }
+        return result;
     }
     public void Break(Sphere globalSphere)
     {
@@ -486,43 +488,24 @@ public class Destructible : MonoBehaviour
 
         if (hitCells.Count == 0) return;
 
-        t.Phase("compute reference counts");
-        // compute resource counts
-        int sampleCount = Mathf.RoundToInt(hitCells.Count * DENSITY);
-        int chunkCount = Mathf.RoundToInt(hitCells.Count / Mathf.Pow(CHUNK_CELLS, 3));
-
-        t.Phase("generate voronoi samples");
-        // generate voronoi samples
-        var sampleToCell = GenerateSamples(hitCells, sampleCount);
-
-        // generate chunk centers
-        var centerToCell = MakeMap<Vec3, Cell>();
-        t.Phase("generate core centers");
-        GenerateChunkCenters(hitCells, chunkCount, centerToCell);
-        t.Phase("generate chip centers");
-        var chipCenters = GenerateChunkCenters(borderCells, Mathf.CeilToInt(borderCells.Count / 3), centerToCell);
-
-        Debug.Log($"samples: {sampleCount}, centers: {centerToCell.Count}");
-
-        // split into islands and then voronoi regions
-        t.Phase("find islands");
-        var cellToIsland = FindIslands(hitCells);
-        t.Phase("map islands to centers");
-        var islandToCenters = MapIslandsToCenters(centerToCell, cellToIsland);
-        t.Phase("organize voronoi samples");
-        var centerToChunk = GetVoronoiChunks(
-            sampleToCell.Keys,
-            sample => cellToIsland[sampleToCell[sample]],
-            island => islandToCenters.GetValueOrDefault(island, null)
-        );
-
         t.Phase("remove cells");
         // enact the will of the explosion
-        foreach (var cell in brokenCells) cell.Remove();
+        foreach (var cell in brokenCells)
+        {
+            cell.active = false;
+            if (cell.debris != null)
+            {
+                stuckChunks.Remove(cell.debris);
+                cell.debris = null;
+            }
+        }
+
+        t.Phase("find altered chunks");
+        var brokenChunks = GetChunks(brokenCells);
 
         t.Phase("stick chunks");
         // attach some polyhedra to the remaining surface
-        var debris = StickChunks(centerToChunk, chipCenters, brokenSphere);
+        var debris = StickChunks(brokenChunks);
 
         t.Phase("find cavity");
         // create debris objects from loose polyhedra

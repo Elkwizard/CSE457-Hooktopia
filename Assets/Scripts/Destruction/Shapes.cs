@@ -48,6 +48,8 @@ public class Sphere
 }
 public class Polytope
 {
+    private static int nextId = 0;
+    public readonly int id = nextId++;
     public readonly List<Vector3> vertices;
     public readonly List<int> indices;
     private Mesh? mesh;

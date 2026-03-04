@@ -4,14 +4,15 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
-#nullable enable
 class BVH<T>
 {
     private readonly List<(T, Bounds)> items;
 
-    public BVH(IEnumerable<(T, Bounds)> bounds)
+    public int Count { get => items.Count; }
+
+    private BVH(List<(T, Bounds)> _items)
     {
-        items = bounds.ToList();
+        items = _items;
     }
 
     public List<T> Query(Bounds bounds)
@@ -21,34 +22,55 @@ class BVH<T>
                 .Select(t => t.Item1)
                 .ToList();
     }
+
+    public static BVH<T> Build(IEnumerable<(T, Bounds)> bounds)
+    {
+        return new (bounds.ToList());
+    }
 }
 
-public class DestructionManager
+public class DestructionManager : MonoBehaviour
 {
-    private static DestructionManager? instanceCache;
+    private static DestructionManager instanceCache;
     public static DestructionManager GetInstance()
     {
-        instanceCache ??= new DestructionManager();
+        if (instanceCache == null)
+        {
+            var manager = new GameObject("destruction manager");
+            instanceCache = manager.AddComponent<DestructionManager>();
+        }
         return instanceCache;
     }
-    private readonly BVH<Destructible> destructible;
+    private BVH<Destructible> bvh;
+    private List<(Destructible, Bounds)> walls = new();
+    private Queue<(Destructible wall, Sphere hitSphere)> breakRequests = new();
 
-    private DestructionManager()
+    void Update()
     {
-        destructible = new(
-            Object.FindObjectsByType<Destructible>(FindObjectsSortMode.None)
-                .Select(script => (script, script.gameObject.GetComponent<Collider>().bounds))
-                .ToList()
-        );
+        if (breakRequests.Count > 0)
+        {
+            var (wall, hitSphere) = breakRequests.Dequeue();
+            wall.Break(hitSphere);
+        }
+    }
+
+    public void AddDestructible(Destructible wall)
+    {
+        walls.Add((
+            wall,
+            wall.gameObject.GetComponent<MeshCollider>().bounds
+        ));
     }
 
     public void Break(Sphere sphere)
     {
-        foreach (var block in destructible.Query(sphere.Bounds))
+        if (bvh == null || walls.Count > bvh.Count)
         {
-            block.Break(sphere);
+            bvh = BVH<Destructible>.Build(walls);
+        }
+        foreach (var wall in bvh.Query(sphere.Bounds))
+        {
+            breakRequests.Enqueue((wall, sphere));
         }
     }
 }
-
-#nullable restore
