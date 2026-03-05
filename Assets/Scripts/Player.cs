@@ -39,20 +39,21 @@ public class Player : MonoBehaviour
 
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
-        Vector3 newXZVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z) + acceleration * Time.deltaTime * additionalVector;
+        Vector3 newVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z) + acceleration * Time.deltaTime * additionalVector;
         // cap speed
-        if (newXZVelocity.magnitude > maxHorizontalSpeed) // IsOnGround() && 
+        if (newVelocity.magnitude > maxHorizontalSpeed) // IsOnGround() && 
         {
-            newXZVelocity = newXZVelocity.normalized * maxHorizontalSpeed;
+            newVelocity = newVelocity.normalized * maxHorizontalSpeed;
         }
+        newVelocity.y = rb.linearVelocity.y;
         // apply hook pull
         if (hookInstance && hookInstance.IsHooked())
         {
             Vector3 difference = hookInstance.transform.position - transform.position;
-            newXZVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
+            newVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
         }
         // update velocity
-        rb.linearVelocity = new Vector3(newXZVelocity.x, rb.linearVelocity.y, newXZVelocity.z);
+        rb.linearVelocity = newVelocity;
     }
 
     // Controls
@@ -81,11 +82,13 @@ public class Player : MonoBehaviour
         if (context.phase == InputActionPhase.Performed) {
             if (hookInstance) {
                 if (hookInstance.IsHooked()) {
+                    Destroy(hookInstance.gameObject);
                     hookInstance = null;
                 }
             } else {
-                hookInstance = Instantiate(hookPrefab, transform.position, transform.rotation);
-                hookInstance.SetVelocity(camera.transform.rotation*launchVelocity + rb.linearVelocity);
+                var velocity = camera.transform.rotation * launchVelocity + rb.linearVelocity;
+                hookInstance = Instantiate(hookPrefab, transform.position, Quaternion.LookRotation(velocity));
+                hookInstance.SetVelocity(velocity);
             }
         }
     }

@@ -350,11 +350,11 @@ MonoBehaviour:
   maxHorizontalSpeed: 5
   maxVerticleSpeed: 15
   acceleration: 30
-  jumpingPower: 10
+  jumpingPower: 6
   turnSpeed: 0.08
   launchVelocity: {x: 0, y: 0, z: 15}
   slack: 2
-  pullPower: 3
+  pullPower: 160
   hookPrefab: {fileID: 8203681054021796800, guid: fc8fa22ea47a1364fb0298099d36d9b2, type: 3}
   camera: {fileID: 131444704414154590}
   ground:
