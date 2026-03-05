@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
-    private float timeSinceLastTurn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,7 +35,8 @@ public class Player : MonoBehaviour
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x*turnSpeed, 0f);
         camera.transform.localRotation = Quaternion.Euler(camera.transform.localEulerAngles.x-turnControl.y*turnSpeed, 0f, 0f);
-        
+        turnControl = new Vector2(0, 0);
+
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
         Vector3 newXZVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z) + acceleration * Time.deltaTime * additionalVector;
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
     public void Turn(InputAction.CallbackContext context)
     {
-        turnControl = context.ReadValue<Vector2>();
+        turnControl += context.ReadValue<Vector2>();
     }
 
     public void Hook(InputAction.CallbackContext context)

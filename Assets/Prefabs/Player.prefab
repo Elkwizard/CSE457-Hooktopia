@@ -351,7 +351,7 @@ MonoBehaviour:
   maxVerticleSpeed: 15
   acceleration: 30
   jumpingPower: 10
-  turnSpeed: 0.5
+  turnSpeed: 0.08
   launchVelocity: {x: 0, y: 0, z: 15}
   slack: 2
   pullPower: 3
