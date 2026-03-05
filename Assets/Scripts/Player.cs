@@ -17,19 +17,20 @@ public class Player : MonoBehaviour
 
     [SerializeField] GrapplingHook hookPrefab;
     private GrapplingHook hookInstance = null;
-    [SerializeField] Camera camera;
+    [SerializeField] new Camera camera;
     [SerializeField] LayerMask ground;
     [SerializeField] Transform groundChecker;
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
+    private float timeSinceLastTurn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
-    
     void FixedUpdate()
     {
         // turn
@@ -38,16 +39,17 @@ public class Player : MonoBehaviour
         
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
-        Vector3 newXZVelocity = new Vector3(rb.linearVelocity.x, 0 , rb.linearVelocity.z) + additionalVector * acceleration * Time.deltaTime;
+        Vector3 newXZVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z) + acceleration * Time.deltaTime * additionalVector;
         // cap speed
-        if (newXZVelocity.magnitude > maxHorizontalSpeed) // isOnGround() && 
+        if (newXZVelocity.magnitude > maxHorizontalSpeed) // IsOnGround() && 
         {
             newXZVelocity = newXZVelocity.normalized * maxHorizontalSpeed;
         }
         // apply hook pull
-        if (hookInstance && hookInstance.IsHooked()) {
+        if (hookInstance && hookInstance.IsHooked())
+        {
             Vector3 difference = hookInstance.transform.position - transform.position;
-            newXZVelocity += pullPower * Mathf.Max(difference.magnitude-slack, 0) * (difference.normalized) * Time.deltaTime;;
+            newXZVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
         }
         // update velocity
         rb.linearVelocity = new Vector3(newXZVelocity.x, rb.linearVelocity.y, newXZVelocity.z);
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         // Check if the jump button was pressed and the player is grounded
-        if (context.performed && isOnGround())
+        if (context.performed && IsOnGround())
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpingPower, rb.linearVelocity.y);
         }
@@ -88,7 +90,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool isOnGround()
+    private bool IsOnGround()
     {
         return Physics.OverlapBox(groundChecker.position, new Vector3(0.5f, 0.1f, 0.5f), transform.rotation, ground).Length > 0;
     }
