@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5591914899038291526}
   - component: {fileID: 4967259666958995078}
+  - component: {fileID: 131541434592410997}
   m_Layer: 7
   m_Name: GroundChecker
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 1, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8107161030361730406}
@@ -42,10 +43,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -53,6 +54,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &131541434592410997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626177638377748413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5056f3bfacacf44b256c634fd93e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionMonitor
 --- !u!1 &2741335466789347614
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +77,6 @@ GameObject:
   - component: {fileID: 8107161030361730406}
   - component: {fileID: 1773622236457750106}
   - component: {fileID: 742492572824814557}
-  - component: {fileID: 5916101213017803826}
   - component: {fileID: 1672189172944368062}
   - component: {fileID: 4426483994916533222}
   - component: {fileID: 3125383601230729238}
@@ -150,27 +162,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5916101213017803826
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741335466789347614}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &1672189172944368062
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -178,7 +169,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2741335466789347614}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e4c637136cb002f49b947d78a5a37090, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -381,10 +372,9 @@ MonoBehaviour:
   pullPower: 30
   hookPrefab: {fileID: 8203681054021796800, guid: fc8fa22ea47a1364fb0298099d36d9b2, type: 3}
   camera: {fileID: 131444704414154590}
-  ground:
-    serializedVersion: 2
-    m_Bits: 64
-  groundChecker: {fileID: 5591914899038291526}
+  groundChecker: {fileID: 131541434592410997}
+  groundDrag: 0.07
+  airDrag: 0.05
 --- !u!1 &7379983605720030243
 GameObject:
   m_ObjectHideFlags: 0

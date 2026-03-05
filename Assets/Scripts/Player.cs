@@ -18,8 +18,9 @@ public class Player : MonoBehaviour
     [SerializeField] GrapplingHook hookPrefab;
     private GrapplingHook hookInstance = null;
     [SerializeField] new Camera camera;
-    [SerializeField] LayerMask ground;
-    [SerializeField] Transform groundChecker;
+    [SerializeField] CollisionMonitor groundChecker;
+    [SerializeField] float groundDrag;
+    [SerializeField] float airDrag;
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
@@ -52,6 +53,8 @@ public class Player : MonoBehaviour
             Vector3 difference = hookInstance.transform.position - transform.position;
             newVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
         }
+        // apply drag
+        newVelocity *= 1 - (IsOnGround() ? groundDrag : airDrag);
         // update velocity
         rb.linearVelocity = newVelocity;
     }
@@ -94,7 +97,7 @@ public class Player : MonoBehaviour
 
     private bool IsOnGround()
     {
-        return Physics.OverlapBox(groundChecker.position, new Vector3(0.5f, 0.1f, 0.5f), transform.rotation, ground).Length > 0;
+        return groundChecker.IsColliding();
     }
 
 }
