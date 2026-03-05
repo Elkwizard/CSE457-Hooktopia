@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5591914899038291526}
   - component: {fileID: 4967259666958995078}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 4426483994916533222}
   - component: {fileID: 3125383601230729238}
   - component: {fileID: 5165344009601096338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,6 +314,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2e0d459d-59c5-41dd-881d-3d1fdeafcafa
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5165344009601096338}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Hook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1793340a-7bd8-4d4c-b3a3-72943ecfb8b0
+    m_ActionName: 'Player/Hook[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -336,6 +352,11 @@ MonoBehaviour:
   acceleration: 30
   jumpingPower: 10
   turnSpeed: 0.5
+  launchVelocity: {x: 0, y: 0, z: 15}
+  slack: 2
+  pullPower: 3
+  hookPrefab: {fileID: 8203681054021796800, guid: fc8fa22ea47a1364fb0298099d36d9b2, type: 3}
+  camera: {fileID: 131444704414154590}
   ground:
     serializedVersion: 2
     m_Bits: 64
@@ -352,7 +373,7 @@ GameObject:
   - component: {fileID: 131444704414154590}
   - component: {fileID: 3039442068555196959}
   - component: {fileID: 4412045266293993469}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
