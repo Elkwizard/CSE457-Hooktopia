@@ -18,6 +18,14 @@ public class GrapplingHook : MonoBehaviour
         initialVel = _velocity;
     }
 
+    private void Update()
+    {
+        if (!hooked)
+        {
+            transform.rotation = Quaternion.LookRotation(rb.linearVelocity);
+        }
+    }
+
     void OnCollisionEnter(Collision collisionInfo)
     {
         // Check if a collision has already been detected

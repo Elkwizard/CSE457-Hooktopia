@@ -86,9 +86,8 @@ public class Player : MonoBehaviour
                     hookInstance = null;
                 }
             } else {
-                var velocity = camera.transform.rotation * launchVelocity + rb.linearVelocity;
-                hookInstance = Instantiate(hookPrefab, transform.position, Quaternion.LookRotation(velocity));
-                hookInstance.SetVelocity(velocity);
+                hookInstance = Instantiate(hookPrefab, transform.position, transform.rotation);
+                hookInstance.SetVelocity(camera.transform.rotation * launchVelocity + rb.linearVelocity);
             }
         }
     }
