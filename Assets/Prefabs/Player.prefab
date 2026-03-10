@@ -365,15 +365,17 @@ MonoBehaviour:
   maxHorizontalSpeed: 5
   maxVerticleSpeed: 15
   acceleration: 30
-  jumpingPower: 6
+  jumpingPower: 12
   turnSpeed: 0.08
-  launchVelocity: {x: 0, y: 0, z: 15}
+  launchVelocity: {x: 0, y: 0, z: 25}
   slack: 2
-  pullPower: 30
+  pullPower: 20
+  yankPower: 15
+  maxHookDist: 50
   hookPrefab: {fileID: 8203681054021796800, guid: fc8fa22ea47a1364fb0298099d36d9b2, type: 3}
   camera: {fileID: 131444704414154590}
   groundChecker: {fileID: 131541434592410997}
-  groundDrag: 0.07
+  groundDrag: 0.1
   airDrag: 0.05
 --- !u!1 &7379983605720030243
 GameObject:

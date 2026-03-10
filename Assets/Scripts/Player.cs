@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 launchVelocity;
     [SerializeField] float slack;
     [SerializeField] float pullPower;
+    [SerializeField] float yankPower;
+    [SerializeField] float maxHookDist;
+    private Vector3 yanked;
 
     [SerializeField] GrapplingHook hookPrefab;
     private GrapplingHook hookInstance = null;
@@ -40,25 +43,36 @@ public class Player : MonoBehaviour
 
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
-        Vector3 newVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z) + acceleration * Time.deltaTime * additionalVector;
+        Vector3 oldXZVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 newVelocity = oldXZVelocity + acceleration * Time.deltaTime * additionalVector;
         // cap speed
-        if (newVelocity.magnitude > maxHorizontalSpeed) // IsOnGround() && 
+        if (newVelocity.magnitude > maxHorizontalSpeed)
         {
-            newVelocity = newVelocity.normalized * maxHorizontalSpeed;
+            newVelocity = newVelocity.normalized * Mathf.Max(oldXZVelocity.magnitude, maxHorizontalSpeed);
         }
         newVelocity.y = rb.linearVelocity.y;
         // apply hook pull
-        if (hookInstance && hookInstance.IsHooked())
+        if (hookInstance)
         {
             Vector3 difference = hookInstance.transform.position - transform.position;
-            newVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
+            if (difference.magnitude > maxHookDist) {
+                Unhook();    
+            }
+            else if(hookInstance.IsHooked()) {
+                // auto unhooks at distance
+                if (difference.magnitude > slack) {
+                    newVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
+                }
+            }
         }
+        newVelocity += yanked;
+        yanked = new Vector3(0,0,0);
         // apply drag
         newVelocity *= 1 - (IsOnGround() ? groundDrag : airDrag);
         // update velocity
         rb.linearVelocity = newVelocity;
     }
-
+    
     // Controls
 
     public void Move(InputAction.CallbackContext context)
@@ -71,7 +85,7 @@ public class Player : MonoBehaviour
         // Check if the jump button was pressed and the player is grounded
         if (context.performed && IsOnGround())
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpingPower, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpingPower, rb.linearVelocity.z);
         }
     }
 
@@ -83,16 +97,22 @@ public class Player : MonoBehaviour
     public void Hook(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed) {
+            
             if (hookInstance) {
                 if (hookInstance.IsHooked()) {
-                    Destroy(hookInstance.gameObject);
-                    hookInstance = null;
+                    yanked = yankPower * (hookInstance.transform.position - transform.position);
                 }
+                Unhook();
             } else {
                 hookInstance = Instantiate(hookPrefab, transform.position, transform.rotation);
                 hookInstance.SetVelocity(camera.transform.rotation * launchVelocity + rb.linearVelocity);
             }
         }
+    }
+
+    public void Unhook() {
+        Destroy(hookInstance.gameObject);
+        hookInstance = null;
     }
 
     private bool IsOnGround()
