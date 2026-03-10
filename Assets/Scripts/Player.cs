@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] float maxHorizontalSpeed;
-    [SerializeField] float maxVerticleSpeed;
+    [SerializeField] float maxAbsoluteSpeed;
     [SerializeField] float acceleration;
     [SerializeField] float jumpingPower;
     [SerializeField] float turnSpeed;
