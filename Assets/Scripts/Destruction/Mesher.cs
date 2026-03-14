@@ -10,7 +10,9 @@ using UnityEngine.UIElements;
 public class Matrix2x2
 {
     private readonly Vector2 x, y;
-    public Matrix2x2 Inverse { get
+    public Matrix2x2 Inverse
+    {
+        get
         {
             float a = x.x;
             float b = y.x;
@@ -20,7 +22,8 @@ public class Matrix2x2
             if (Mathf.Abs(det) < 0.001) return null;
 
             return new Matrix2x2(new(d, -c), new(-b, a)) * (1.0f / det);
-        } }
+        }
+    }
 
     public Matrix2x2(Vector2 _x, Vector2 _y)
     {
@@ -33,17 +36,17 @@ public class Matrix2x2
         return $"[{x.x} {y.x}; {x.y} {y.y}]";
     }
 
-    public static Matrix2x2 operator*(Matrix2x2 lhs, float rhs)
+    public static Matrix2x2 operator *(Matrix2x2 lhs, float rhs)
     {
         return new(lhs.x * rhs, lhs.y * rhs);
     }
 
-    public static Matrix2x2 operator*(Matrix2x2 lhs, Matrix2x2 rhs)
+    public static Matrix2x2 operator *(Matrix2x2 lhs, Matrix2x2 rhs)
     {
         return new(lhs * rhs.x, lhs * rhs.y);
     }
 
-    public static Vector2 operator*(Matrix2x2 lhs, Vector2 rhs)
+    public static Vector2 operator *(Matrix2x2 lhs, Vector2 rhs)
     {
         return lhs.x * rhs.x + lhs.y * rhs.y;
     }
@@ -119,7 +122,7 @@ public class UVFace
 
     public static UVFace FromCardinalFace(
         Vector3 a, Vector3 b, Vector3 c,
-        Vector2 uvA, Vector2 uvB, Vector2 uvC    
+        Vector2 uvA, Vector2 uvB, Vector2 uvC
     )
     {
         var floatNormal = Vector3.Cross(c - a, b - a).normalized;
@@ -128,7 +131,7 @@ public class UVFace
             Mathf.RoundToInt(floatNormal.y),
             Mathf.RoundToInt(floatNormal.z)
         );
-        
+
         var a2 = Project(a, normal);
         var b2 = Project(b, normal);
         var c2 = Project(c, normal);
