@@ -70,6 +70,16 @@ public class Polytope
             return Mesh.bounds;
         }
     }
+    public Vector3 Center
+    {
+        get
+        {
+            Vector3 result = Vector3.zero;
+            foreach (var vertex in vertices)
+                result += vertex;
+            return result / vertices.Count;
+        }
+    }
 
     public Polytope(List<Vector3> _vertices, List<int> _indices, List<Vector2> _uvs)
     {

@@ -117,7 +117,7 @@ public class Destructible : MonoBehaviour
     static readonly float SAMPLE_DENSITY = 4f;
     static readonly float CHUNK_DENSITY = 0.037f;
     static readonly int DIRECTION_SAMPLES = 20;
-    //static readonly float FORCE = 10f;
+    static readonly float FORCE = 10f;
     static readonly Vector3Int[] DIRECTIONS = new Vector3Int[]
     {
         Vector3Int.left,
@@ -305,7 +305,8 @@ public class Destructible : MonoBehaviour
         foreach (var (center, samples) in centerToSamples)
         {
             var chunk = Mesher.BuildConvexHull(samples.Select(v => (Vector3)v).ToList(), uvFaces);
-            if (chunk == null) continue;
+            if (chunk == null || chunk.vertices.Count == 0) continue;
+            chunk = chunk.Scale(cellSize);
             var chunkCells = MakeSet<Cell>();
             chunkToCells[chunk] = chunkCells;
             foreach (var sample in samples)
@@ -326,52 +327,6 @@ public class Destructible : MonoBehaviour
         }
         chunkToCells.Remove(chunk);
         stuckChunks.Remove(chunk);
-    }
-    private HashSet<Cell> ExploreIsland(Cell root, HashSet<Cell> cells)
-    {
-        var island = MakeSet<Cell>();
-        island.Add(root);
-
-        var toExplore = new Queue<Cell>();
-        toExplore.Enqueue(root);
-
-        while (toExplore.Count > 0)
-        {
-            var cell = toExplore.Dequeue();
-
-            foreach (var direction in DIRECTIONS)
-            {
-                var next = SafeIndex(cell.inx + direction);
-                if (!cells.Contains(next) || island.Contains(next))
-                    continue;
-
-                island.Add(next);
-                toExplore.Enqueue(next);
-            }
-        }
-
-        return island;
-    }
-    private Dictionary<Cell, Island> FindIslands(List<Cell> cells)
-    {
-        var cellSet = MakeSet<Cell>();
-        cellSet.UnionWith(cells);
-        var cellToIsland = MakeMap<Cell, Island>();
-
-        foreach (var cell in cells)
-        {
-            if (cellToIsland.ContainsKey(cell)) continue;
-
-            var islandCells = ExploreIsland(cell, cellSet);
-
-            var island = new Island(islandCells);
-            foreach (var piece in islandCells)
-            {
-                cellToIsland[piece] = island;
-            }
-        }
-
-        return cellToIsland;
     }
     private Vector3 GetCellCenter(Cell cell)
     {
@@ -397,13 +352,11 @@ public class Destructible : MonoBehaviour
     }
     private Vector3 GetRandomPoint(Cell cell)
     {
-        var center = GetCellCenter(cell);
-
-        return center + new Vector3(
-            Random.Range(-1, 1),
-            Random.Range(-1, 1),
-            Random.Range(-1, 1)
-        ) * (cellSize / 2);
+        return cell.inx + new Vector3(
+            Random.Range(0f, 1f),
+            Random.Range(0f, 1f),
+            Random.Range(0f, 1f)
+        );
     }
     private Sphere GetDamageSphere(Sphere globalSphere)
     {
@@ -472,29 +425,19 @@ public class Destructible : MonoBehaviour
     }
     private void MakeDebris(Polytope chunk, Vector3 forceSource)
     {
-        if (chunk.vertices.Count == 0) return;
-
         var debrisObject = Instantiate(debrisPrefab);
 
-        var mesh = chunk.Transform(transform).Mesh;
+        var worldChunk = chunk.Transform(transform);
+        var mesh = worldChunk.Mesh;
         debrisObject.GetComponent<MeshFilter>().sharedMesh = mesh;
         var meshCollider = debrisObject.GetComponent<MeshCollider>();
         meshCollider.sharedMesh = mesh;
         meshCollider.convex = true;
         debrisObject.GetComponent<MeshRenderer>().sharedMaterial = material;
+        var rb = debrisObject.GetComponent<Rigidbody>();
 
-        //var force = (debrisObject.transform.position - forceSource) * FORCE;
-        //debrisObject.GetComponent<Rigidbody>().AddForce(force);
-    }
-    private bool InBounds(Vector3Int inx)
-    {
-        var safe = inx;
-        safe.Clamp(Vector3Int.zero, gridSize - Vector3Int.one);
-        return safe == inx;
-    }
-    private Cell SafeIndex(Vector3Int inx)
-    {
-        return InBounds(inx) ? grid[inx.x, inx.y, inx.z] : null;
+        var force = (worldChunk.Center - forceSource) * FORCE;
+        rb.linearVelocity = force;
     }
     private Polytope[] StickChunks(HashSet<Polytope> brokenChunks)
     {

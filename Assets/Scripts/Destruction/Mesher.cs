@@ -125,7 +125,7 @@ public class UVFace
         Vector2 uvA, Vector2 uvB, Vector2 uvC
     )
     {
-        var floatNormal = Vector3.Cross(c - a, b - a).normalized;
+        var floatNormal = Vector3.Cross(b - a, c - a).normalized;
         var normal = new Vector3Int(
             Mathf.RoundToInt(floatNormal.x),
             Mathf.RoundToInt(floatNormal.y),
@@ -164,6 +164,11 @@ public class UVFaces
             result.faces[normal] = fn(face);
         }
         return result;
+    }
+
+    public UVFace GetCardinalFace(Vector3Int normal)
+    {
+        return faces[normal];
     }
 
     public UVFace GetFace(Vector3 normal)
@@ -353,14 +358,14 @@ public class Mesher
                     h, d,
                     (j, k) => Get(i, j, k) && !Get(i - 1, j, k),
                     (j, k) => swizzle(new(i, j, k)),
-                    faces.GetFace(swizzle(new(1, 0, 0))),
+                    faces.GetCardinalFace(swizzle(new(-1, 0, 0))),
                     true
                 );
                 AddLayer(
                     h, d,
                     (j, k) => Get(i, j, k) && !Get(i + 1, j, k),
                     (j, k) => swizzle(new(i + 1, j, k)),
-                    faces.GetFace(swizzle(new(-1, 0, 0))),
+                    faces.GetCardinalFace(swizzle(new(1, 0, 0))),
                     false
                 );
             }
