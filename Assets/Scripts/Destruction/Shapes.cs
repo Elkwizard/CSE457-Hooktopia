@@ -52,6 +52,7 @@ public class Polytope
     public readonly int id = nextId++;
     public readonly List<Vector3> vertices;
     public readonly List<int> indices;
+    public readonly List<Vector2> uvs;
     private Mesh? mesh;
     public Mesh Mesh
     {
@@ -69,21 +70,34 @@ public class Polytope
             return Mesh.bounds;
         }
     }
+    public Vector3 Center
+    {
+        get
+        {
+            Vector3 result = Vector3.zero;
+            foreach (var vertex in vertices)
+                result += vertex;
+            return result / vertices.Count;
+        }
+    }
 
-    public Polytope(List<Vector3> _vertices, List<int> _indices)
+    public Polytope(List<Vector3> _vertices, List<int> _indices, List<Vector2> _uvs)
     {
         vertices = _vertices;
         indices = _indices;
+        uvs = _uvs;
     }
 
     public Polytope(List<Polytope> sources)
     {
-        vertices = new List<Vector3>();
-        indices = new List<int>();
+        vertices = new();
+        uvs = new();
+        indices = new();
         foreach (var source in sources)
         {
             int firstIndex = vertices.Count;
             vertices.AddRange(source.vertices);
+            uvs.AddRange(source.uvs);
             indices.AddRange(source.indices.Select(inx => firstIndex + inx));
         }
     }
@@ -92,14 +106,15 @@ public class Polytope
     {
         return new(
             vertices.Select(fn).ToList(),
-            indices
+            indices,
+            uvs
         );
     }
     public Polytope Transform(Transform transf)
     {
         var newVertices = new Vector3[vertices.Count];
         transf.TransformPoints(vertices.ToArray(), newVertices);
-        return new(newVertices.ToList(), indices);
+        return new(newVertices.ToList(), indices, uvs);
     }
     public Polytope Scale(float factor)
     {
@@ -109,8 +124,10 @@ public class Polytope
     {
         var mesh = new Mesh
         {
+            indexFormat = vertices.Count >= 0xFFFF ? UnityEngine.Rendering.IndexFormat.UInt32 : UnityEngine.Rendering.IndexFormat.UInt16,
             vertices = vertices.ToArray(),
-            triangles = indices.ToArray()
+            triangles = indices.ToArray(),
+            uv = uvs.ToArray()
         };
         mesh.RecalculateNormals();
         return mesh;

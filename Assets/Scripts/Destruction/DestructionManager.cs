@@ -42,8 +42,8 @@ public class DestructionManager : MonoBehaviour
         return instanceCache;
     }
     private BVH<Destructible> bvh;
-    private List<(Destructible, Bounds)> walls = new();
-    private Queue<(Destructible wall, Sphere hitSphere)> breakRequests = new();
+    private readonly List<(Destructible, Bounds)> walls = new();
+    private readonly Queue<(Destructible wall, Sphere hitSphere)> breakRequests = new();
 
     void Update()
     {

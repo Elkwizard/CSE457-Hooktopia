@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -13,6 +14,7 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UIElements;
 using static Unity.VectorGraphics.VectorUtils;
+using static Unity.VisualScripting.Member;
 using static UnityEngine.Audio.ProcessorInstance;
 using Random = UnityEngine.Random;
 
@@ -110,10 +112,8 @@ class Timer
     }
 }
 
-
 public class Destructible : MonoBehaviour
 {
-
     static readonly float SAMPLE_DENSITY = 4f;
     static readonly float CHUNK_DENSITY = 0.037f;
     static readonly int DIRECTION_SAMPLES = 20;
@@ -127,27 +127,50 @@ public class Destructible : MonoBehaviour
         Vector3Int.forward,
         Vector3Int.back
     };
+    static readonly int MAX_SIDE_CELLS = 30;
+
+    [SerializeField]
+    private Destructible chunkPrefab;
+    [SerializeField]
+    private GameObject debrisPrefab;
 
     private Cell[,,] grid;
     private IntBounds inxBounds;
-    private float cellSize;
+    [SerializeField]
+    private float cellSize = 0.1f;
+    private Vector3 size;
     private Vector3Int gridSize;
     private MeshCollider meshCollider;
     private MeshFilter meshFilter;
     private Dictionary<Cell, HashSet<Polytope>> cellToChunks;
     private Dictionary<Polytope, HashSet<Cell>> chunkToCells;
     private HashSet<Polytope> stuckChunks;
+    private UVFaces uvFaces;
+    private Material material;
+    private bool raw = true;
 
     void Start()
     {
-        transform.parent = null;
-        BoxCollider box = GetComponent<BoxCollider>();
-        Vector3 size = Vector3.Scale(box.size, transform.localScale);
-        transform.position = transform.TransformPoint(box.center - box.size * 0.5f);
-        transform.localScale = Vector3.one;
-        Destroy(box);
+        if (raw)
+        {
+            transform.parent = null;
+            BoxCollider box = GetComponent<BoxCollider>();
+            size = Vector3.Scale(box.size, transform.localScale);
+            transform.position = transform.TransformPoint(box.center - box.size * 0.5f);
+            transform.localScale = Vector3.one;
+            material = GetComponent<MeshRenderer>().sharedMaterial;
+            Destroy(box);
 
-        cellSize = 0.1f;
+            ExtractUVs();
+
+            Split();
+
+            Destroy(gameObject);
+            return;
+        }
+
+        //Timer t = new();
+        //t.Phase("setup");
         gridSize = Vector3Int.CeilToInt(size / cellSize);
         grid = new Cell[gridSize.x, gridSize.y, gridSize.z];
         inxBounds = new(Vector3Int.zero, gridSize - Vector3Int.one);
@@ -158,7 +181,7 @@ public class Destructible : MonoBehaviour
             return true;
         });
 
-        meshCollider = gameObject.AddComponent<MeshCollider>();
+        meshCollider = GetComponent<MeshCollider>();
         meshFilter = GetComponent<MeshFilter>();
 
         ComputeChunks();
@@ -166,6 +189,69 @@ public class Destructible : MonoBehaviour
         SyncColliders();
 
         DestructionManager.GetInstance().AddDestructible(this);
+        //t.End();
+    }
+
+    private void Split()
+    {
+        float maxSideSize = MAX_SIDE_CELLS * cellSize;
+        for (float x = 0; x < size.x; x += maxSideSize)
+        {
+            for (float y = 0; y < size.y; y += maxSideSize)
+            {
+                for (float z = 0; z < size.z; z += maxSideSize)
+                {
+                    float width = Mathf.Min(size.x - x, maxSideSize);
+                    float height = Mathf.Min(size.y - y, maxSideSize);
+                    float depth = Mathf.Min(size.z - z, maxSideSize);
+
+                    if (width < cellSize || height < cellSize || depth < cellSize)
+                    {
+                        continue;
+                    }
+
+                    var chunk = Instantiate(
+                        chunkPrefab,
+                        transform.TransformPoint(new(x, y, z)),
+                        transform.rotation
+                    );
+                    chunk.raw = false;
+                    chunk.size = new(width, height, depth);
+                    chunk.cellSize = cellSize;
+                    chunk.material = material;
+
+                    // set chunk uvs
+                    var cellOffset = new Vector3(x, y, z) / cellSize;
+                    chunk.uvFaces = uvFaces.Map(f => f.WithOffset(cellOffset));
+                }
+            }
+        }
+    }
+
+    private void ExtractUVs()
+    {
+        uvFaces = new UVFaces();
+        var mesh = GetComponent<MeshFilter>().mesh;
+        // default mesh is a 0-centered unit cube
+        var newCenter = Vector3.one * 0.5f;
+        var worldVerts = mesh.vertices
+            .Select(vertex => Vector3.Scale(size, vertex + newCenter))
+            .ToArray();
+
+        for (int i = 0; i < mesh.triangles.Length; i += 3)
+        {
+            int a = mesh.triangles[i + 0];
+            int b = mesh.triangles[i + 1];
+            int c = mesh.triangles[i + 2];
+            uvFaces.AddCardinalFace(
+                worldVerts[a], worldVerts[b], worldVerts[c],
+                mesh.uv[a], mesh.uv[b], mesh.uv[c]
+            );
+        }
+
+        uvFaces = uvFaces.Map(f => f.WithScale(cellSize));
+
+        Debug.Log(uvFaces);
     }
 
     private delegate void ForEachDelegate(Cell cell, Vector3Int index);
@@ -218,7 +304,9 @@ public class Destructible : MonoBehaviour
 
         foreach (var (center, samples) in centerToSamples)
         {
-            var chunk = Mesher.BuildConvexHull(samples.Select(v => (Vector3)v).ToList());
+            var chunk = Mesher.BuildConvexHull(samples.Select(v => (Vector3)v).ToList(), uvFaces);
+            if (chunk == null || chunk.vertices.Count == 0) continue;
+            chunk = chunk.Scale(cellSize);
             var chunkCells = MakeSet<Cell>();
             chunkToCells[chunk] = chunkCells;
             foreach (var sample in samples)
@@ -240,61 +328,13 @@ public class Destructible : MonoBehaviour
         chunkToCells.Remove(chunk);
         stuckChunks.Remove(chunk);
     }
-    private HashSet<Cell> ExploreIsland(Cell root, HashSet<Cell> cells)
-    {
-        var island = MakeSet<Cell>();
-        island.Add(root);
-
-        var toExplore = new Queue<Cell>();
-        toExplore.Enqueue(root);
-
-        while (toExplore.Count > 0)
-        {
-            var cell = toExplore.Dequeue();
-
-            foreach (var direction in DIRECTIONS)
-            {
-                var next = SafeIndex(cell.inx + direction);
-                if (!cells.Contains(next) || island.Contains(next))
-                    continue;
-
-                island.Add(next);
-                toExplore.Enqueue(next);
-            }
-        }
-
-        return island;
-    }
-    private Dictionary<Cell, Island> FindIslands(List<Cell> cells)
-    {
-        var cellSet = MakeSet<Cell>();
-        cellSet.UnionWith(cells);
-        var cellToIsland = MakeMap<Cell, Island>();
-
-        foreach (var cell in cells)
-        {
-            if (cellToIsland.ContainsKey(cell)) continue;
-
-            var islandCells = ExploreIsland(cell, cellSet);
-
-            var island = new Island(islandCells);
-            foreach (var piece in islandCells)
-            {
-                cellToIsland[piece] = island;
-            }
-        }
-
-        return cellToIsland;
-    }
     private Vector3 GetCellCenter(Cell cell)
     {
         return (cell.inx + Vector3.one * 0.5f) * cellSize;
     }
-    private (List<Cell> hitCells, List<Cell> brokenCells, List<Cell> borderCells) ClassifyCells(Sphere hitSphere, Sphere brokenSphere)
+    private List<Cell> GetHitCells(Sphere hitSphere)
     {
         List<Cell> hitCells = new();
-        List<Cell> brokenCells = new();
-        List<Cell> borderCells = new();
 
         ForEachCell((cell, _) =>
         {
@@ -305,42 +345,27 @@ public class Destructible : MonoBehaviour
             if (hitSphere.ContainsPoint(center))
             {
                 hitCells.Add(cell);
-                if (brokenSphere.ContainsPoint(center))
-                {
-                    brokenCells.Add(cell);
-                }
-                else
-                {
-                    borderCells.Add(cell);
-                }
             }
         });
 
-        return (hitCells, brokenCells, borderCells);
+        return hitCells;
     }
     private Vector3 GetRandomPoint(Cell cell)
     {
-        var center = GetCellCenter(cell);
-
-        return center + new Vector3(
-            Random.Range(-1, 1),
-            Random.Range(-1, 1),
-            Random.Range(-1, 1)
-        ) * (cellSize / 2);
+        return cell.inx + new Vector3(
+            Random.Range(0f, 1f),
+            Random.Range(0f, 1f),
+            Random.Range(0f, 1f)
+        );
     }
-    private (Sphere hitSphere, Sphere brokenSphere) GetDamageSpheres(Sphere globalSphere)
+    private Sphere GetDamageSphere(Sphere globalSphere)
     {
         float damageBuffer = cellSize;
 
-        Sphere hitSphere = new(
+        return new(
             transform.InverseTransformPoint(globalSphere.position),
-            globalSphere.radius
+            Mathf.Max(globalSphere.radius - damageBuffer, 0f)
         );
-        Sphere brokenSphere = new(
-            hitSphere.position,
-            Mathf.Max(hitSphere.radius - damageBuffer, 0f)
-        );
-        return (hitSphere, brokenSphere);
     }
     private delegate Island GetSampleIslandDelegate(Vec3 sample);
     private delegate KDTree GetIslandCentersDelegate(Island island);
@@ -351,7 +376,7 @@ public class Destructible : MonoBehaviour
         {
             activity[inx.x, inx.y, inx.z] = cell.active;
         });
-        return Mesher.BuildPolytope(activity).Scale(cellSize);
+        return Mesher.BuildPolytope(activity, uvFaces).Scale(cellSize);
     }
     private void SyncColliders()
     {
@@ -400,21 +425,19 @@ public class Destructible : MonoBehaviour
     }
     private void MakeDebris(Polytope chunk, Vector3 forceSource)
     {
-        if (chunk.vertices.Count == 0) return;
-        var debrisObject = new GameObject("debris");
-        debrisObject.AddComponent<Debris>().SetSourceObject(gameObject, chunk);
-        var force = (debrisObject.transform.position - forceSource) * FORCE;
-        debrisObject.GetComponent<Rigidbody>().AddForce(force);
-    }
-    private bool InBounds(Vector3Int inx)
-    {
-        var safe = inx;
-        safe.Clamp(Vector3Int.zero, gridSize - Vector3Int.one);
-        return safe == inx;
-    }
-    private Cell SafeIndex(Vector3Int inx)
-    {
-        return InBounds(inx) ? grid[inx.x, inx.y, inx.z] : null;
+        var debrisObject = Instantiate(debrisPrefab);
+
+        var worldChunk = chunk.Transform(transform);
+        var mesh = worldChunk.Mesh;
+        debrisObject.GetComponent<MeshFilter>().sharedMesh = mesh;
+        var meshCollider = debrisObject.GetComponent<MeshCollider>();
+        meshCollider.sharedMesh = mesh;
+        meshCollider.convex = true;
+        debrisObject.GetComponent<MeshRenderer>().sharedMaterial = material;
+        var rb = debrisObject.GetComponent<Rigidbody>();
+
+        var force = (worldChunk.Center - forceSource) * FORCE;
+        rb.linearVelocity = force;
     }
     private Polytope[] StickChunks(HashSet<Polytope> brokenChunks)
     {
@@ -461,7 +484,7 @@ public class Destructible : MonoBehaviour
         for (int i = 0; i < centerCount; i++)
         {
             var cell = cells[Random.Range(0, cells.Count)];
-            var center = new Vec3(GetCellCenter(cell));
+            var center = new Vec3(GetRandomPoint(cell));
             centers.Add(center);
         }
         return centers;
@@ -482,15 +505,15 @@ public class Destructible : MonoBehaviour
 
         t.Phase("compute damage spheres");
         // classify cells and damage regions
-        var (hitSphere, brokenSphere) = GetDamageSpheres(globalSphere);
+        var hitSphere = GetDamageSphere(globalSphere);
         t.Phase("classify cells");
-        var (hitCells, brokenCells, borderCells) = ClassifyCells(hitSphere, brokenSphere);
+        var hitCells = GetHitCells(hitSphere);
 
         if (hitCells.Count == 0) return;
 
         t.Phase("remove cells");
         // enact the will of the explosion
-        foreach (var cell in brokenCells)
+        foreach (var cell in hitCells)
         {
             cell.active = false;
             if (cell.debris != null)
@@ -501,7 +524,7 @@ public class Destructible : MonoBehaviour
         }
 
         t.Phase("find altered chunks");
-        var brokenChunks = GetChunks(brokenCells);
+        var brokenChunks = GetChunks(hitCells);
 
         t.Phase("stick chunks");
         // attach some polyhedra to the remaining surface
