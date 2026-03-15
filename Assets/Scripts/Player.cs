@@ -84,6 +84,9 @@ public class Player : MonoBehaviour
         yanked = new Vector3(0, 0, 0);
         // apply drag
         newVelocity *= 1 - (IsOnGround() ? groundDrag : airDrag);
+        if (newVelocity.magnitude > maxAbsoluteSpeed) {
+            newVelocity = newVelocity.normalized * maxAbsoluteSpeed;
+        }
         // update velocity
         rb.linearVelocity = newVelocity;
     }
