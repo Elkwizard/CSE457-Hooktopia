@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3249713691769385162}
   - component: {fileID: 3822214201975511201}
   - component: {fileID: 3720304350989807302}
+  - component: {fileID: 5718850558315900777}
   m_Layer: 0
   m_Name: Debris
   m_TagString: Untagged
@@ -133,7 +134,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -141,3 +142,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5718850558315900777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940309364969752528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbac493062122ec4b8136c76d4b7f576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Debris
+  minLifetime: 2
+  maxLifetime: 5

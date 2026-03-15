@@ -25,6 +25,7 @@ public class Arrow : MonoBehaviour
             hit = true;
             rb.isKinematic = true;
             DestructionManager.GetInstance().Break(new(rb.worldCenterOfMass, player.arrowPower));
+            Destroy(gameObject);
         }
     }
 
