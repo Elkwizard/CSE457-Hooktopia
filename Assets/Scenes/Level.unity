@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 13858001}
   - component: {fileID: 13858000}
   - component: {fileID: 13857999}
+  - component: {fileID: 13858002}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Untagged
@@ -231,6 +232,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13857997}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &13858002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13857997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &28586195
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +259,7 @@ GameObject:
   - component: {fileID: 28586199}
   - component: {fileID: 28586198}
   - component: {fileID: 28586197}
+  - component: {fileID: 28586200}
   m_Layer: 0
   m_Name: Obstacle (31)
   m_TagString: Untagged
@@ -343,6 +360,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28586195}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &28586200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28586195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &107689032
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +387,7 @@ GameObject:
   - component: {fileID: 107689036}
   - component: {fileID: 107689035}
   - component: {fileID: 107689034}
+  - component: {fileID: 107689037}
   m_Layer: 0
   m_Name: Obstacle (32)
   m_TagString: Untagged
@@ -455,6 +488,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107689032}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &107689037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107689032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &114794619
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +515,7 @@ GameObject:
   - component: {fileID: 114794623}
   - component: {fileID: 114794622}
   - component: {fileID: 114794621}
+  - component: {fileID: 114794624}
   m_Layer: 0
   m_Name: Obstacle (35)
   m_TagString: Untagged
@@ -567,6 +616,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114794619}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114794624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114794619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &149356031
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +643,7 @@ GameObject:
   - component: {fileID: 149356035}
   - component: {fileID: 149356034}
   - component: {fileID: 149356033}
+  - component: {fileID: 149356036}
   m_Layer: 0
   m_Name: Obstacle (16)
   m_TagString: Untagged
@@ -679,6 +744,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149356031}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &149356036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149356031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &260636192
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +771,7 @@ GameObject:
   - component: {fileID: 260636196}
   - component: {fileID: 260636195}
   - component: {fileID: 260636194}
+  - component: {fileID: 260636197}
   m_Layer: 0
   m_Name: Obstacle (52)
   m_TagString: Untagged
@@ -791,6 +872,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260636192}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &260636197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260636192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &262357246
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +899,7 @@ GameObject:
   - component: {fileID: 262357250}
   - component: {fileID: 262357249}
   - component: {fileID: 262357248}
+  - component: {fileID: 262357251}
   m_Layer: 0
   m_Name: Obstacle (43)
   m_TagString: Untagged
@@ -903,6 +1000,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262357246}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &262357251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262357246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &312421078
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,6 +1027,7 @@ GameObject:
   - component: {fileID: 312421082}
   - component: {fileID: 312421081}
   - component: {fileID: 312421080}
+  - component: {fileID: 312421083}
   m_Layer: 0
   m_Name: Obstacle (47)
   m_TagString: Untagged
@@ -1015,6 +1128,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312421078}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &312421083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312421078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &352149302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,6 +1155,7 @@ GameObject:
   - component: {fileID: 352149306}
   - component: {fileID: 352149305}
   - component: {fileID: 352149304}
+  - component: {fileID: 352149307}
   m_Layer: 0
   m_Name: Obstacle (17)
   m_TagString: Untagged
@@ -1127,6 +1256,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352149302}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &352149307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352149302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &375730645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,6 +1283,7 @@ GameObject:
   - component: {fileID: 375730649}
   - component: {fileID: 375730648}
   - component: {fileID: 375730647}
+  - component: {fileID: 375730650}
   m_Layer: 0
   m_Name: Obstacle (12)
   m_TagString: Untagged
@@ -1239,6 +1384,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375730645}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &375730650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375730645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &402381201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1411,7 @@ GameObject:
   - component: {fileID: 402381205}
   - component: {fileID: 402381204}
   - component: {fileID: 402381203}
+  - component: {fileID: 402381206}
   m_Layer: 0
   m_Name: Obstacle (24)
   m_TagString: Untagged
@@ -1351,6 +1512,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402381201}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &402381206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402381201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &521259164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1539,7 @@ GameObject:
   - component: {fileID: 521259168}
   - component: {fileID: 521259167}
   - component: {fileID: 521259166}
+  - component: {fileID: 521259169}
   m_Layer: 0
   m_Name: Obstacle (6)
   m_TagString: Untagged
@@ -1463,6 +1640,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521259164}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &521259169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521259164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &601891932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1667,7 @@ GameObject:
   - component: {fileID: 601891936}
   - component: {fileID: 601891935}
   - component: {fileID: 601891934}
+  - component: {fileID: 601891937}
   m_Layer: 0
   m_Name: Obstacle (34)
   m_TagString: Untagged
@@ -1575,6 +1768,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601891932}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &601891937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601891932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &689170570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,6 +1795,7 @@ GameObject:
   - component: {fileID: 689170574}
   - component: {fileID: 689170573}
   - component: {fileID: 689170572}
+  - component: {fileID: 689170575}
   m_Layer: 0
   m_Name: Obstacle (29)
   m_TagString: Untagged
@@ -1687,6 +1896,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689170570}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &689170575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689170570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &701413972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1923,7 @@ GameObject:
   - component: {fileID: 701413976}
   - component: {fileID: 701413975}
   - component: {fileID: 701413974}
+  - component: {fileID: 701413977}
   m_Layer: 0
   m_Name: Obstacle (53)
   m_TagString: Untagged
@@ -1799,6 +2024,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701413972}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &701413977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701413972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &714834029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +2051,7 @@ GameObject:
   - component: {fileID: 714834033}
   - component: {fileID: 714834032}
   - component: {fileID: 714834031}
+  - component: {fileID: 714834034}
   m_Layer: 0
   m_Name: Obstacle (5)
   m_TagString: Untagged
@@ -1911,6 +2152,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714834029}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &714834034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714834029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &727830123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +2179,7 @@ GameObject:
   - component: {fileID: 727830127}
   - component: {fileID: 727830126}
   - component: {fileID: 727830125}
+  - component: {fileID: 727830128}
   m_Layer: 0
   m_Name: Obstacle (33)
   m_TagString: Untagged
@@ -2023,6 +2280,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727830123}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &727830128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727830123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &734784337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,6 +2307,7 @@ GameObject:
   - component: {fileID: 734784341}
   - component: {fileID: 734784340}
   - component: {fileID: 734784339}
+  - component: {fileID: 734784342}
   m_Layer: 0
   m_Name: Obstacle (55)
   m_TagString: Untagged
@@ -2135,6 +2408,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734784337}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &734784342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734784337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &790910545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2435,7 @@ GameObject:
   - component: {fileID: 790910549}
   - component: {fileID: 790910548}
   - component: {fileID: 790910547}
+  - component: {fileID: 790910550}
   m_Layer: 0
   m_Name: Obstacle (48)
   m_TagString: Untagged
@@ -2247,33 +2536,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790910545}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &876567661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -7029948723529949830, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-  m_PrefabInstance: {fileID: 1168437150}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &876567665
-MeshCollider:
+--- !u!114 &790910550
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876567661}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_GameObject: {fileID: 790910545}
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &901992341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2563,7 @@ GameObject:
   - component: {fileID: 901992345}
   - component: {fileID: 901992344}
   - component: {fileID: 901992343}
+  - component: {fileID: 901992346}
   m_Layer: 0
   m_Name: Obstacle (1)
   m_TagString: Untagged
@@ -2386,6 +2664,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901992341}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &901992346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901992341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &907023095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,6 +2691,7 @@ GameObject:
   - component: {fileID: 907023099}
   - component: {fileID: 907023098}
   - component: {fileID: 907023097}
+  - component: {fileID: 907023100}
   m_Layer: 0
   m_Name: Obstacle (20)
   m_TagString: Untagged
@@ -2498,6 +2792,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907023095}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &907023100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907023095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &908001831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,6 +2819,7 @@ GameObject:
   - component: {fileID: 908001835}
   - component: {fileID: 908001834}
   - component: {fileID: 908001833}
+  - component: {fileID: 908001836}
   m_Layer: 0
   m_Name: Obstacle (22)
   m_TagString: Untagged
@@ -2610,6 +2920,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908001831}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &908001836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908001831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &913436258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,6 +2947,7 @@ GameObject:
   - component: {fileID: 913436262}
   - component: {fileID: 913436261}
   - component: {fileID: 913436260}
+  - component: {fileID: 913436263}
   m_Layer: 0
   m_Name: Obstacle (18)
   m_TagString: Untagged
@@ -2722,6 +3048,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913436258}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &913436263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913436258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &954414293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +3075,7 @@ GameObject:
   - component: {fileID: 954414297}
   - component: {fileID: 954414296}
   - component: {fileID: 954414295}
+  - component: {fileID: 954414298}
   m_Layer: 0
   m_Name: Obstacle (23)
   m_TagString: Untagged
@@ -2834,6 +3176,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954414293}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &954414298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954414293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1012855674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +3203,7 @@ GameObject:
   - component: {fileID: 1012855678}
   - component: {fileID: 1012855677}
   - component: {fileID: 1012855676}
+  - component: {fileID: 1012855679}
   m_Layer: 0
   m_Name: Obstacle (50)
   m_TagString: Untagged
@@ -2946,6 +3304,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012855674}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1012855679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012855674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1055704365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,6 +3331,7 @@ GameObject:
   - component: {fileID: 1055704369}
   - component: {fileID: 1055704368}
   - component: {fileID: 1055704367}
+  - component: {fileID: 1055704370}
   m_Layer: 0
   m_Name: Obstacle (56)
   m_TagString: Untagged
@@ -3058,6 +3432,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055704365}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1055704370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055704365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1056052265
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,6 +3459,7 @@ GameObject:
   - component: {fileID: 1056052269}
   - component: {fileID: 1056052268}
   - component: {fileID: 1056052267}
+  - component: {fileID: 1056052270}
   m_Layer: 0
   m_Name: Obstacle (21)
   m_TagString: Untagged
@@ -3170,6 +3560,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056052265}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1056052270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056052265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1001 &1082011039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3239,6 +3644,7 @@ GameObject:
   - component: {fileID: 1086112013}
   - component: {fileID: 1086112012}
   - component: {fileID: 1086112011}
+  - component: {fileID: 1086112014}
   m_Layer: 0
   m_Name: Obstacle (19)
   m_TagString: Untagged
@@ -3339,37 +3745,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086112009}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1118494845
-GameObject:
+--- !u!114 &1086112014
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1118494846}
-  m_Layer: 0
-  m_Name: Walls
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1118494846
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118494845}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.82868, y: -1, z: -0.31832}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1512687644}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1086112009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1141248249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3382,6 +3772,7 @@ GameObject:
   - component: {fileID: 1141248253}
   - component: {fileID: 1141248252}
   - component: {fileID: 1141248251}
+  - component: {fileID: 1141248254}
   m_Layer: 0
   m_Name: Obstacle (51)
   m_TagString: Untagged
@@ -3482,6 +3873,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141248249}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1141248254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141248249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1163728498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3494,6 +3900,7 @@ GameObject:
   - component: {fileID: 1163728502}
   - component: {fileID: 1163728501}
   - component: {fileID: 1163728500}
+  - component: {fileID: 1163728503}
   m_Layer: 0
   m_Name: Obstacle (26)
   m_TagString: Untagged
@@ -3594,242 +4001,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163728498}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1168437150
-PrefabInstance:
+--- !u!114 &1163728503
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8645189057184350269, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8145494143283061134, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7902701309694641842, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7417291208246234669, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7357023400275135250, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7338739297336299802, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7317369532270029384, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -7011528853070698517, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6923210660334017705, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6813482281009562359, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -6525165409076573696, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -5362098165836377340, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -5292193574664934121, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -5234187568737957339, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4292154010595695564, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -4292154010595695564, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -4292154010595695564, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: -3030172612746289738, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2951962097723471498, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2779165723592079136, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2646187670464598364, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2530338035400978852, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2072761475932327921, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1723085531028071953, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -833831309417574386, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -780441939204778465, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -370154555625891890, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11267966054497383, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 319779059969513300, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 653738481193802778, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 776529239673014049, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822800576383057437, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_Name
-      value: level1_map
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167328701986664453, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371906873142654697, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2891206155867972285, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3054564272736010121, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3937703822545402061, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4107307873347884005, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5020099494640042034, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5789925612358177368, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619246424890306174, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8737908743582705245, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9217889742983334067, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -7029948723529949830, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 876567665}
-  m_SourcePrefab: {fileID: 100100000, guid: d2f5c72f4da1c4040b52ce97ca4d6850, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163728498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1194539984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,6 +4028,7 @@ GameObject:
   - component: {fileID: 1194539988}
   - component: {fileID: 1194539987}
   - component: {fileID: 1194539986}
+  - component: {fileID: 1194539989}
   m_Layer: 0
   m_Name: Obstacle (45)
   m_TagString: Untagged
@@ -3942,6 +4129,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194539984}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1194539989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194539984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1214967843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3954,6 +4156,7 @@ GameObject:
   - component: {fileID: 1214967847}
   - component: {fileID: 1214967846}
   - component: {fileID: 1214967845}
+  - component: {fileID: 1214967848}
   m_Layer: 0
   m_Name: Obstacle (14)
   m_TagString: Untagged
@@ -4054,6 +4257,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214967843}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1214967848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214967843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1229465000
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,6 +4284,7 @@ GameObject:
   - component: {fileID: 1229465004}
   - component: {fileID: 1229465003}
   - component: {fileID: 1229465002}
+  - component: {fileID: 1229465005}
   m_Layer: 0
   m_Name: Obstacle (9)
   m_TagString: Untagged
@@ -4166,6 +4385,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229465000}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1229465005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229465000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1235894663
 GameObject:
   m_ObjectHideFlags: 0
@@ -4178,6 +4412,7 @@ GameObject:
   - component: {fileID: 1235894667}
   - component: {fileID: 1235894666}
   - component: {fileID: 1235894665}
+  - component: {fileID: 1235894668}
   m_Layer: 0
   m_Name: Obstacle (54)
   m_TagString: Untagged
@@ -4278,6 +4513,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235894663}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1235894668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235894663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1236195882
 GameObject:
   m_ObjectHideFlags: 0
@@ -4290,6 +4540,7 @@ GameObject:
   - component: {fileID: 1236195886}
   - component: {fileID: 1236195885}
   - component: {fileID: 1236195884}
+  - component: {fileID: 1236195887}
   m_Layer: 0
   m_Name: Obstacle (27)
   m_TagString: Untagged
@@ -4390,6 +4641,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236195882}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1236195887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236195882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1263840801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,6 +4668,7 @@ GameObject:
   - component: {fileID: 1263840805}
   - component: {fileID: 1263840804}
   - component: {fileID: 1263840803}
+  - component: {fileID: 1263840806}
   m_Layer: 0
   m_Name: Obstacle (49)
   m_TagString: Untagged
@@ -4502,6 +4769,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263840801}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1263840806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263840801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1287802992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4514,6 +4796,7 @@ GameObject:
   - component: {fileID: 1287802996}
   - component: {fileID: 1287802995}
   - component: {fileID: 1287802994}
+  - component: {fileID: 1287802997}
   m_Layer: 0
   m_Name: Obstacle (25)
   m_TagString: Untagged
@@ -4614,6 +4897,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287802992}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1287802997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287802992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1310294988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4626,6 +4924,7 @@ GameObject:
   - component: {fileID: 1310294992}
   - component: {fileID: 1310294991}
   - component: {fileID: 1310294990}
+  - component: {fileID: 1310294993}
   m_Layer: 0
   m_Name: Obstacle (42)
   m_TagString: Untagged
@@ -4726,6 +5025,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310294988}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1310294993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310294988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1323767731
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,6 +5052,7 @@ GameObject:
   - component: {fileID: 1323767735}
   - component: {fileID: 1323767734}
   - component: {fileID: 1323767733}
+  - component: {fileID: 1323767736}
   m_Layer: 0
   m_Name: Obstacle (13)
   m_TagString: Untagged
@@ -4838,6 +5153,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323767731}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1323767736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323767731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1370067242
 GameObject:
   m_ObjectHideFlags: 0
@@ -4850,6 +5180,7 @@ GameObject:
   - component: {fileID: 1370067246}
   - component: {fileID: 1370067245}
   - component: {fileID: 1370067244}
+  - component: {fileID: 1370067247}
   m_Layer: 0
   m_Name: Obstacle (10)
   m_TagString: Untagged
@@ -4950,6 +5281,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370067242}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1370067247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370067242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1476670373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,6 +5377,7 @@ Transform:
   - {fileID: 714834030}
   - {fileID: 107689033}
   - {fileID: 312421079}
+  - {fileID: 2099671414}
   - {fileID: 1229465001}
   - {fileID: 2003412444}
   - {fileID: 954414294}
@@ -5177,6 +5524,7 @@ GameObject:
   - component: {fileID: 1505822339}
   - component: {fileID: 1505822338}
   - component: {fileID: 1505822337}
+  - component: {fileID: 1505822340}
   m_Layer: 0
   m_Name: Obstacle (11)
   m_TagString: Untagged
@@ -5277,6 +5625,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505822335}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1505822340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505822335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1512687643
 GameObject:
   m_ObjectHideFlags: 0
@@ -5306,9 +5669,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1967922079}
   - {fileID: 1476670374}
-  - {fileID: 1118494846}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514925292
@@ -5323,6 +5684,7 @@ GameObject:
   - component: {fileID: 1514925296}
   - component: {fileID: 1514925295}
   - component: {fileID: 1514925294}
+  - component: {fileID: 1514925297}
   m_Layer: 0
   m_Name: Obstacle (44)
   m_TagString: Untagged
@@ -5423,6 +5785,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514925292}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1514925297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514925292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1536501705
 GameObject:
   m_ObjectHideFlags: 0
@@ -5435,6 +5812,7 @@ GameObject:
   - component: {fileID: 1536501709}
   - component: {fileID: 1536501708}
   - component: {fileID: 1536501707}
+  - component: {fileID: 1536501710}
   m_Layer: 0
   m_Name: Obstacle (38)
   m_TagString: Untagged
@@ -5535,6 +5913,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536501705}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1536501710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536501705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1555653411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5547,6 +5940,7 @@ GameObject:
   - component: {fileID: 1555653415}
   - component: {fileID: 1555653414}
   - component: {fileID: 1555653413}
+  - component: {fileID: 1555653416}
   m_Layer: 0
   m_Name: Obstacle (40)
   m_TagString: Untagged
@@ -5647,6 +6041,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555653411}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1555653416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555653411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1589419227
 GameObject:
   m_ObjectHideFlags: 0
@@ -5659,6 +6068,7 @@ GameObject:
   - component: {fileID: 1589419231}
   - component: {fileID: 1589419230}
   - component: {fileID: 1589419229}
+  - component: {fileID: 1589419232}
   m_Layer: 0
   m_Name: Obstacle (36)
   m_TagString: Untagged
@@ -5759,6 +6169,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589419227}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1589419232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589419227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1611357521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5771,6 +6196,7 @@ GameObject:
   - component: {fileID: 1611357525}
   - component: {fileID: 1611357524}
   - component: {fileID: 1611357523}
+  - component: {fileID: 1611357526}
   m_Layer: 0
   m_Name: Obstacle (2)
   m_TagString: Untagged
@@ -5871,6 +6297,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611357521}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1611357526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611357521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1626178135
 GameObject:
   m_ObjectHideFlags: 0
@@ -5883,6 +6324,7 @@ GameObject:
   - component: {fileID: 1626178139}
   - component: {fileID: 1626178138}
   - component: {fileID: 1626178137}
+  - component: {fileID: 1626178140}
   m_Layer: 0
   m_Name: Obstacle (30)
   m_TagString: Untagged
@@ -5983,6 +6425,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626178135}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1626178140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626178135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1634210114
 GameObject:
   m_ObjectHideFlags: 0
@@ -5995,6 +6452,7 @@ GameObject:
   - component: {fileID: 1634210118}
   - component: {fileID: 1634210117}
   - component: {fileID: 1634210116}
+  - component: {fileID: 1634210119}
   m_Layer: 0
   m_Name: Obstacle (37)
   m_TagString: Untagged
@@ -6095,6 +6553,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634210114}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1634210119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634210114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1640201302
 GameObject:
   m_ObjectHideFlags: 0
@@ -6107,6 +6580,7 @@ GameObject:
   - component: {fileID: 1640201306}
   - component: {fileID: 1640201305}
   - component: {fileID: 1640201304}
+  - component: {fileID: 1640201307}
   m_Layer: 0
   m_Name: Obstacle (46)
   m_TagString: Untagged
@@ -6207,6 +6681,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640201302}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1640201307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640201302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1663309335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6219,6 +6708,7 @@ GameObject:
   - component: {fileID: 1663309339}
   - component: {fileID: 1663309338}
   - component: {fileID: 1663309337}
+  - component: {fileID: 1663309340}
   m_Layer: 0
   m_Name: Obstacle (8)
   m_TagString: Untagged
@@ -6319,6 +6809,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663309335}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1663309340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663309335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1727089088
 GameObject:
   m_ObjectHideFlags: 0
@@ -6331,6 +6836,7 @@ GameObject:
   - component: {fileID: 1727089092}
   - component: {fileID: 1727089091}
   - component: {fileID: 1727089090}
+  - component: {fileID: 1727089093}
   m_Layer: 0
   m_Name: Obstacle (3)
   m_TagString: Untagged
@@ -6431,6 +6937,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727089088}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1727089093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727089088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1733544373
 GameObject:
   m_ObjectHideFlags: 0
@@ -6443,6 +6964,7 @@ GameObject:
   - component: {fileID: 1733544377}
   - component: {fileID: 1733544376}
   - component: {fileID: 1733544375}
+  - component: {fileID: 1733544378}
   m_Layer: 0
   m_Name: Obstacle (28)
   m_TagString: Untagged
@@ -6543,6 +7065,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733544373}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1733544378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733544373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1853749587
 GameObject:
   m_ObjectHideFlags: 0
@@ -6555,6 +7092,7 @@ GameObject:
   - component: {fileID: 1853749591}
   - component: {fileID: 1853749590}
   - component: {fileID: 1853749589}
+  - component: {fileID: 1853749592}
   m_Layer: 0
   m_Name: Obstacle (7)
   m_TagString: Untagged
@@ -6655,6 +7193,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853749587}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1853749592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853749587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1872575531
 GameObject:
   m_ObjectHideFlags: 0
@@ -6667,6 +7220,7 @@ GameObject:
   - component: {fileID: 1872575535}
   - component: {fileID: 1872575534}
   - component: {fileID: 1872575533}
+  - component: {fileID: 1872575536}
   m_Layer: 0
   m_Name: Obstacle (4)
   m_TagString: Untagged
@@ -6767,6 +7321,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872575531}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1872575536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872575531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &1901134485
 GameObject:
   m_ObjectHideFlags: 0
@@ -6779,6 +7348,7 @@ GameObject:
   - component: {fileID: 1901134489}
   - component: {fileID: 1901134488}
   - component: {fileID: 1901134487}
+  - component: {fileID: 1901134490}
   m_Layer: 0
   m_Name: Obstacle (15)
   m_TagString: Untagged
@@ -6879,119 +7449,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901134485}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1967922075
-GameObject:
+--- !u!114 &1901134490
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1967922079}
-  - component: {fileID: 1967922078}
-  - component: {fileID: 1967922077}
-  - component: {fileID: 1967922076}
-  m_Layer: 6
-  m_Name: Plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!64 &1967922076
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967922075}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_GameObject: {fileID: 1901134485}
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1967922077
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967922075}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1967922078
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967922075}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1967922079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1967922075}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.82868, y: -1, z: -0.31832}
-  m_LocalScale: {x: 6, y: 1, z: 6}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1512687644}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &2003412443
 GameObject:
   m_ObjectHideFlags: 0
@@ -7004,6 +7476,7 @@ GameObject:
   - component: {fileID: 2003412447}
   - component: {fileID: 2003412446}
   - component: {fileID: 2003412445}
+  - component: {fileID: 2003412448}
   m_Layer: 0
   m_Name: Obstacle (41)
   m_TagString: Untagged
@@ -7104,6 +7577,149 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003412443}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2003412448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003412443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
+--- !u!1 &2099671413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099671414}
+  - component: {fileID: 2099671417}
+  - component: {fileID: 2099671416}
+  - component: {fileID: 2099671415}
+  - component: {fileID: 2099671418}
+  m_Layer: 0
+  m_Name: Obstacle (57)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099671414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099671413}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.5, y: 0, z: -10.5}
+  m_LocalScale: {x: 50, y: 0.5, z: 50}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1476670374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2099671415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099671413}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2099671416
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099671413}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 475617be723ee364c823f49c25ce9ee4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2099671417
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099671413}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2099671418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099671413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1 &2105187319
 GameObject:
   m_ObjectHideFlags: 0
@@ -7116,6 +7732,7 @@ GameObject:
   - component: {fileID: 2105187323}
   - component: {fileID: 2105187322}
   - component: {fileID: 2105187321}
+  - component: {fileID: 2105187324}
   m_Layer: 0
   m_Name: Obstacle (39)
   m_TagString: Untagged
@@ -7216,6 +7833,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105187319}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2105187324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105187319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Destructible
+  chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
+  debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
+  cellSize: 0.125
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7223,4 +7855,3 @@ SceneRoots:
   - {fileID: 1504803390}
   - {fileID: 1082011039}
   - {fileID: 1512687644}
-  - {fileID: 1168437150}
