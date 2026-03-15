@@ -20,10 +20,20 @@ public class Player : MonoBehaviour
 
     [SerializeField] GrapplingHook hookPrefab;
     private GrapplingHook hookInstance = null;
+
     [SerializeField] new Camera camera;
     [SerializeField] CollisionMonitor groundChecker;
     [SerializeField] float groundDrag;
     [SerializeField] float airDrag;
+
+    [SerializeField] float maxBowTime;
+    [SerializeField] GameObject arrow;
+    [SerializeField] float bowDrawDistance;
+    [SerializeField] InputActionReference fireAction;
+    [SerializeField] float minFireSpeed;
+    [SerializeField] float maxFireSpeed;
+    public float arrowPower;
+    float bowTime;
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
@@ -33,12 +43,14 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        bowTime = 0;
     }
     void FixedUpdate()
     {
+        UpdateBow();
         // turn
-        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x*turnSpeed, 0f);
-        camera.transform.localRotation = Quaternion.Euler(camera.transform.localEulerAngles.x-turnControl.y*turnSpeed, 0f, 0f);
+        transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
+        camera.transform.localRotation = Quaternion.Euler(camera.transform.localEulerAngles.x - turnControl.y * turnSpeed, 0f, 0f);
         turnControl = new Vector2(0, 0);
 
         // add acceleration
@@ -55,31 +67,72 @@ public class Player : MonoBehaviour
         if (hookInstance)
         {
             Vector3 difference = hookInstance.transform.position - transform.position;
-            if (difference.magnitude > maxHookDist) {
-                Unhook();    
+            if (difference.magnitude > maxHookDist)
+            {
+                Unhook();
             }
-            else if(hookInstance.IsHooked()) {
+            else if (hookInstance.IsHooked())
+            {
                 // auto unhooks at distance
-                if (difference.magnitude > slack) {
-                    newVelocity += Mathf.Max(difference.magnitude-slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
+                if (difference.magnitude > slack)
+                {
+                    newVelocity += Mathf.Max(difference.magnitude - slack, 0) * pullPower * Time.deltaTime * (difference.normalized);
                 }
             }
         }
         newVelocity += yanked;
-        yanked = new Vector3(0,0,0);
+        yanked = new Vector3(0, 0, 0);
         // apply drag
         newVelocity *= 1 - (IsOnGround() ? groundDrag : airDrag);
         // update velocity
         rb.linearVelocity = newVelocity;
     }
-    
+
+    private void LaunchArrow(float strength)
+    {
+        var launched = Instantiate(arrow, arrow.transform.parent);
+        launched.transform.parent = null;
+        var rb = launched.AddComponent<Rigidbody>();
+        rb.linearVelocity = GetLaunchVelocity(
+            new(0, 0, Mathf.Lerp(minFireSpeed, maxFireSpeed, strength))
+        );
+        launched.GetComponent<BoxCollider>().enabled = true;
+        launched.AddComponent<Arrow>().player = this;
+    }
+
     // Controls
+    private void UpdateBow()
+    {
+        float t = bowTime / maxBowTime;
+
+        if (fireAction.action.IsPressed())
+        {
+            bowTime += Time.deltaTime;
+        }
+        else
+        {
+            bowTime = 0;
+        }
+        bowTime = Mathf.Min(bowTime, maxBowTime);
+
+        if (bowTime > 0)
+        {
+            arrow.SetActive(true);
+            float displacement = bowDrawDistance * (1 - Mathf.Pow(0.01f, t));
+            arrow.transform.localPosition = new(0, 0, -displacement);
+        }
+        else
+        {
+            if (arrow.activeSelf) LaunchArrow(t);
+            arrow.SetActive(false);
+        }
+    }
 
     public void Move(InputAction.CallbackContext context)
     {
         horizontalControl = context.ReadValue<Vector2>();
     }
-    
+
     public void Jump(InputAction.CallbackContext context)
     {
         // Check if the jump button was pressed and the player is grounded
@@ -96,21 +149,32 @@ public class Player : MonoBehaviour
 
     public void Hook(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed) {
-            
-            if (hookInstance) {
-                if (hookInstance.IsHooked()) {
+        if (context.phase == InputActionPhase.Performed)
+        {
+
+            if (hookInstance)
+            {
+                if (hookInstance.IsHooked())
+                {
                     yanked = yankPower * (hookInstance.transform.position - transform.position);
                 }
                 Unhook();
-            } else {
+            }
+            else
+            {
                 hookInstance = Instantiate(hookPrefab, transform.position, transform.rotation);
-                hookInstance.SetVelocity(camera.transform.rotation * launchVelocity + rb.linearVelocity);
+                hookInstance.SetVelocity(GetLaunchVelocity(launchVelocity));
             }
         }
     }
 
-    public void Unhook() {
+    private Vector3 GetLaunchVelocity(Vector3 launchVelocity)
+    {
+        return camera.transform.rotation * launchVelocity + rb.linearVelocity;
+    }
+
+    public void Unhook()
+    {
         Destroy(hookInstance.gameObject);
         hookInstance = null;
     }
