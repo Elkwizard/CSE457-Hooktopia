@@ -186,6 +186,7 @@ public class Destructible : MonoBehaviour
 
         meshCollider = GetComponent<MeshCollider>();
         meshFilter = GetComponent<MeshFilter>();
+        GetComponent<MeshRenderer>().sharedMaterial = material;
 
         ComputeChunks();
 
