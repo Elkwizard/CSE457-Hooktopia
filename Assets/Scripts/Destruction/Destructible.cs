@@ -128,6 +128,7 @@ public class Destructible : MonoBehaviour
         Vector3Int.back
     };
     static readonly int MAX_SIDE_CELLS = 30;
+    static float totalTime = 0;
 
     [SerializeField]
     private Destructible chunkPrefab;
@@ -169,6 +170,8 @@ public class Destructible : MonoBehaviour
             return;
         }
 
+        float startTime = Time.realtimeSinceStartup;
+
         //Timer t = new();
         //t.Phase("setup");
         gridSize = Vector3Int.CeilToInt(size / cellSize);
@@ -190,6 +193,9 @@ public class Destructible : MonoBehaviour
 
         DestructionManager.GetInstance().AddDestructible(this);
         //t.End();
+
+        totalTime += Time.realtimeSinceStartup - startTime;
+        Debug.Log(totalTime);
     }
 
     private void Split()
