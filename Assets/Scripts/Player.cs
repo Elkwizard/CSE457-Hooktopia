@@ -1,7 +1,8 @@
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     private Rigidbody rb;
 
@@ -41,26 +42,40 @@ public class Player : MonoBehaviour
     private LineRenderer lineRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    void Start() {
         rb = GetComponent<Rigidbody>();
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
+        if (!IsOwner) {
+            print("disable_called");
+            camera.enabled = false;
+        }
+    }
+
+    void OnNetworkSpawn()//void Start()
+    {
+        print("called");
     }
 
     void Update()
     {
-        lineRenderer.SetPosition(1, transform.position + new Vector3(-0.2f, 0, 0));
+        if (!IsOwner) {
+            return;
+        }
+        lineRenderer.SetPosition(0, transform.position + new Vector3(-0.5f, 0, 0));
         if (hookInstance) {
             lineRenderer.SetPosition(1, hookInstance.transform.position);
         } else {
-            lineRenderer.SetPosition(1, transform.position + new Vector3(-0.2f, 0, 0));
+            lineRenderer.SetPosition(1, transform.position + new Vector3(-0.5f, 0, 0));
         }
     }
 
     void FixedUpdate()
     {
+        if (!IsOwner) {
+            return;
+        }
         UpdateBow();
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
@@ -107,6 +122,9 @@ public class Player : MonoBehaviour
 
     private void LaunchArrow(float strength)
     {
+        if (!IsOwner) {
+            return;
+        }
         var launched = Instantiate(arrow, arrow.transform.parent);
         launched.transform.parent = null;
         var rb = launched.AddComponent<Rigidbody>();
@@ -120,6 +138,9 @@ public class Player : MonoBehaviour
     // Controls
     private void UpdateBow()
     {
+        if (!IsOwner) {
+            return;
+        }
         float t = bowTime / maxBowTime;
 
         if (fireAction.action.IsPressed())
@@ -147,11 +168,17 @@ public class Player : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (!IsOwner) {
+            return;
+        }
         horizontalControl = context.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
+        if (!IsOwner) {
+            return;
+        }
         // Check if the jump button was pressed and the player is grounded
         if (context.performed && IsOnGround())
         {
@@ -161,11 +188,17 @@ public class Player : MonoBehaviour
 
     public void Turn(InputAction.CallbackContext context)
     {
+        if (!IsOwner) {
+            return;
+        }
         turnControl += context.ReadValue<Vector2>();
     }
 
     public void Hook(InputAction.CallbackContext context)
     {
+        if (!IsOwner) {
+            return;
+        }
         if (context.phase == InputActionPhase.Performed)
         {
 
