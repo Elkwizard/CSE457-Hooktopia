@@ -1,7 +1,10 @@
 
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 class IdentityEqualityComparer<T> : IEqualityComparer<T> where T : class
 {
     public bool Equals(T v1, T v2)
@@ -28,6 +31,7 @@ public static class Util
 }
 public class Timer
 {
+    private static bool DISABLED = true;
     private readonly string title;
     private readonly float startTime;
     private string currentPhase;
@@ -55,11 +59,13 @@ public class Timer
     }
     public void Phase(string name)
     {
+        if (DISABLED) return;
         EndPhase();
         currentPhase = name;
     }
     public void End()
     {
+        if (DISABLED) return;
         EndPhase();
         float duration = Time.realtimeSinceStartup - startTime;
         string log = $"{title}: {Format(duration)}";
