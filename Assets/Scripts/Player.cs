@@ -37,14 +37,28 @@ public class Player : MonoBehaviour
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
+    
+    private LineRenderer lineRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
     }
+
+    void Update()
+    {
+        lineRenderer.SetPosition(1, transform.position + new Vector3(-0.2f, 0, 0));
+        if (hookInstance) {
+            lineRenderer.SetPosition(1, hookInstance.transform.position);
+        } else {
+            lineRenderer.SetPosition(1, transform.position + new Vector3(-0.2f, 0, 0));
+        }
+    }
+
     void FixedUpdate()
     {
         UpdateBow();
