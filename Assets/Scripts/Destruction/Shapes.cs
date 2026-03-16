@@ -131,7 +131,7 @@ public class Polytope
 
     public void ProjectUVs(UVFaces faces)
     {
-        uvs = new();
+        uvs = new(vertices.Count);
         for (int i = 0; i < vertices.Count; i++)
         {
             uvs.Add(faces.GetFace(normals[i]).GetUV(vertices[i]));

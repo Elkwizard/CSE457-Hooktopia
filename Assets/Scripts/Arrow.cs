@@ -11,6 +11,7 @@ public class Arrow : MonoBehaviour
     {
         hit = false;
         rb = GetComponent<Rigidbody>();
+        DestructionManager.GetInstance().AddHazard(gameObject);
     }
     void OnTriggerEnter(Collider other)
     {

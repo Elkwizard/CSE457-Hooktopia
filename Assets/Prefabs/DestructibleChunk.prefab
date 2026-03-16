@@ -107,6 +107,7 @@ MonoBehaviour:
   chunkPrefab: {fileID: 20720419963887454}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.1
+  IsChunkPrefab: 1
 --- !u!64 &7572603661242699966
 MeshCollider:
   m_ObjectHideFlags: 0

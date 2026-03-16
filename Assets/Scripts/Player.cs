@@ -53,7 +53,7 @@ public class Player : NetworkBehaviour
         }
     }
 
-    void OnNetworkSpawn()//void Start()
+    public override void OnNetworkSpawn()//void Start()
     {
         print("called");
     }

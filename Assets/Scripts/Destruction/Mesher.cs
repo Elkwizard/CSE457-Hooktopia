@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,34 +53,52 @@ public class Matrix2x2
     }
 }
 
-public class UVFace
+public class AffineTransform
 {
-    private readonly Matrix2x2 vertexToUVDiff;
-    private readonly Vector2 baseUV;
-    private readonly Vector3Int normal;
+    public readonly Matrix2x2 linear;
+    public readonly Vector2 offset;
 
-    private UVFace(
-        Vector3Int _normal,
-        (Vector2 vertex, Vector2 uv) a,
-        (Vector2 vertex, Vector2 uv) b,
-        (Vector2 vertex, Vector2 uv) c
-    )
+    public AffineTransform(Matrix2x2 _linear, Vector2 _offset)
     {
-        normal = _normal;
-
-        var toVertex = new Matrix2x2(b.vertex - a.vertex, c.vertex - a.vertex);
-        var toUV = new Matrix2x2(b.uv - a.uv, c.uv - a.uv);
-        var fromVertex = toVertex.Inverse;
-        if (fromVertex == null) return;
-        vertexToUVDiff = toUV * fromVertex;
-        baseUV = a.uv - vertexToUVDiff * a.vertex;
+        linear = _linear;
+        offset = _offset;
     }
 
-    private UVFace(Vector3Int _normal, Matrix2x2 _vertexToUVDiff, Vector2 _baseUV)
+    public override string ToString()
+    {
+        return $"(\\x. {linear}x + {offset})";
+    }
+
+    public static Vector2 operator *(AffineTransform lhs, Vector2 rhs)
+    {
+        return lhs.linear * rhs + lhs.offset;
+    }
+
+    public static AffineTransform From3(
+        (Vector2 from, Vector2 to) a,
+        (Vector2 from, Vector2 to) b,
+        (Vector2 from, Vector2 to) c
+    )
+    {
+        var toVertex = new Matrix2x2(b.from - a.from, c.from - a.from);
+        var toUV = new Matrix2x2(b.to - a.to, c.to - a.to);
+        var fromVertex = toVertex.Inverse;
+        if (fromVertex == null) return null;
+        var vertexToUVDiff = toUV * fromVertex;
+        var baseUV = a.to - vertexToUVDiff * a.from;
+        return new(vertexToUVDiff, baseUV);
+    }
+}
+
+public abstract class UVFace
+{
+    private readonly AffineTransform vertexToUV;
+    private readonly Vector3Int normal;
+
+    private UVFace(Vector3Int _normal, AffineTransform _vertexToUV)
     {
         normal = _normal;
-        vertexToUVDiff = _vertexToUVDiff;
-        baseUV = _baseUV;
+        vertexToUV = _vertexToUV;
     }
 
     public Vector3Int GetNormal()
@@ -87,25 +106,22 @@ public class UVFace
         return normal;
     }
 
+    protected abstract UVFace WithTransform(AffineTransform vertexToUV);
     public UVFace WithOffset(Vector3 offset)
     {
-        return new UVFace(normal, vertexToUVDiff, GetUV(offset));
+        return WithTransform(new(vertexToUV.linear, GetUV(offset)));
     }
 
     public UVFace WithScale(float scale)
     {
-        return new UVFace(normal, vertexToUVDiff * scale, baseUV);
+        return WithTransform(new(vertexToUV.linear * scale, vertexToUV.offset));
     }
 
     public Vector2 GetUV(Vector3 vertex)
     {
-        return vertexToUVDiff * Project(vertex) + baseUV;
+        return vertexToUV * Project(vertex);
     }
-
-    private Vector2 Project(Vector3 vertex)
-    {
-        return Project(vertex, normal);
-    }
+    protected abstract Vector2 Project(Vector3 vertex);
 
     public static Vector2 Project(Vector3 vertex, Vector3Int normal)
     {
@@ -121,27 +137,55 @@ public class UVFace
     }
 
     public static UVFace FromCardinalFace(
-        Vector3 a, Vector3 b, Vector3 c,
+        Vector3 vA, Vector3 vB, Vector3 vC,
         Vector2 uvA, Vector2 uvB, Vector2 uvC
     )
     {
-        var floatNormal = Vector3.Cross(b - a, c - a).normalized;
+        var floatNormal = Vector3.Cross(vB - vA, vC - vA).normalized;
         var normal = new Vector3Int(
             Mathf.RoundToInt(floatNormal.x),
             Mathf.RoundToInt(floatNormal.y),
             Mathf.RoundToInt(floatNormal.z)
         );
 
-        var a2 = Project(a, normal);
-        var b2 = Project(b, normal);
-        var c2 = Project(c, normal);
+        var a = (Project(vA, normal), uvA);
+        var b = (Project(vB, normal), uvB);
+        var c = (Project(vC, normal), uvC);
 
-        return new(normal, (a2, uvA), (b2, uvB), (c2, uvC));
+        if (normal.x != 0) return new X(normal, AffineTransform.From3(a, b, c));
+        if (normal.y != 0) return new Y(normal, AffineTransform.From3(a, b, c));
+        return new Z(normal, AffineTransform.From3(a, b, c));
     }
     public override string ToString()
     {
-        return $"{normal} -> uv = {vertexToUVDiff} * xy + {baseUV}";
+        return $"{normal} -> uv = {vertexToUV}(xy)";
     }
+    // inlining Project(), because it is very slow
+    private class X : UVFace
+    {
+        public X(Vector3Int _normal, AffineTransform _vertexToUV)
+            : base(_normal, _vertexToUV) { }
+
+        protected override Vector2 Project(Vector3 p) => new(p.y, p.z);
+        protected override UVFace WithTransform(AffineTransform a) => new X(normal, a);
+    }
+    private class Y : UVFace
+    {
+        public Y(Vector3Int _normal, AffineTransform _vertexToUV)
+            : base(_normal, _vertexToUV) { }
+        protected override Vector2 Project(Vector3 p) => new(p.x, p.z);
+        protected override UVFace WithTransform(AffineTransform a) => new Y(normal, a);
+    }
+    private class Z : UVFace
+    {
+        public Z(Vector3Int _normal, AffineTransform _vertexToUV)
+            : base(_normal, _vertexToUV) { }
+
+        protected override Vector2 Project(Vector3 p) => new(p.x, p.y);
+        protected override UVFace WithTransform(AffineTransform a) => new Z(normal, a);
+
+    }
+
 }
 
 public class UVFaces
