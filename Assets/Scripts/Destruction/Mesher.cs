@@ -202,7 +202,7 @@ public class UVFaces
 public class Mesher
 {
     private static readonly GK.ConvexHullCalculator convexHullCalculator = new();
-    public static Polytope BuildConvexHull(List<Vector3> points, UVFaces faces)
+    public static Polytope BuildConvexHull(List<Vector3> points)
     {
         try
         {
@@ -210,13 +210,7 @@ public class Mesher
             List<int> indices = new();
             List<Vector3> normals = new();
             convexHullCalculator.GenerateHull(points, true, ref vertices, ref indices, ref normals);
-            List<Vector2> uvs = new();
-            for (int i = 0; i < vertices.Count; i++)
-            {
-                var normal = normals[i];
-                uvs.Add(faces.GetFace(normal).GetUV(vertices[i]));
-            }
-            return new(vertices, indices, uvs);
+            return new(vertices, indices, normals);
         }
         catch
         {
@@ -299,6 +293,7 @@ public class Mesher
     {
         var vertices = new List<Vector3>();
         var indices = new List<int>();
+        var normals = new List<Vector3>();
         var uvs = new List<Vector2>();
 
         void AddConvexVertices(List<Vector3> points, UVFace face, bool flip)
@@ -309,6 +304,7 @@ public class Mesher
             foreach (Vector3 vertex in points)
             {
                 uvs.Add(face.GetUV(vertex));
+                normals.Add(face.GetNormal());
             }
             for (int i = 2; i < points.Count; i++)
             {
@@ -375,6 +371,6 @@ public class Mesher
         AddAxis(dim.y, dim.z, dim.x, v => new(v.z, v.x, v.y));
         AddAxis(dim.z, dim.x, dim.y, v => new(v.y, v.z, v.x));
 
-        return new Polytope(vertices, indices, uvs);
+        return new Polytope(vertices, indices, normals, uvs);
     }
 }

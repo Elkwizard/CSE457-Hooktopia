@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 //using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Xml.Linq;
 using TMPro;
 using Unity.VisualScripting;
@@ -43,23 +45,25 @@ public class Cell
 }
 struct IntBounds
 {
-    public Vector3Int min;
-    public Vector3Int max;
+    public readonly Vector3Int min;
+    public readonly Vector3Int max;
+    public readonly Vector3Int size;
 
     public IntBounds(Vector3Int _min, Vector3Int _max)
     {
         min = _min;
         max = _max;
+        size = _max - _min;
     }
 
     public delegate bool ForEachDelegate(Vector3Int index);
     public readonly bool ForEach(ForEachDelegate act)
     {
-        for (int i = min.x; i <= max.x; i++)
+        for (int i = min.x; i < max.x; i++)
         {
-            for (int j = min.y; j <= max.y; j++)
+            for (int j = min.y; j < max.y; j++)
             {
-                for (int k = min.z; k <= max.z; k++)
+                for (int k = min.z; k < max.z; k++)
                 {
                     if (!act(new(i, j, k))) return false;
                 }
@@ -67,67 +71,210 @@ struct IntBounds
         }
         return true;
     }
-}
-
-class IdentityEqualityComparer<T> : IEqualityComparer<T> where T : class
-{
-    public bool Equals(T v1, T v2)
+    public readonly bool Contains(Vector3Int inx)
     {
-        return ReferenceEquals(v1, v2);
+        return inx.x >= min.x && inx.y >= min.y && inx.z >= min.z && inx.x < max.x && inx.y < max.y && inx.z < max.z;
     }
-    public int GetHashCode(T v)
+    public static (T[,,] grid, IntBounds bounds) CreateGrid<T>(Vector3Int size, Func<Vector3Int, T> create)
     {
-        return RuntimeHelpers.GetHashCode(v);
-    }
-}
-
-class Timer
-{
-    string phase;
-    string results;
-    float time;
-    public Timer()
-    {
-        time = Time.realtimeSinceStartup;
-        results = "";
-    }
-    private void EndPhase()
-    {
-        if (phase != null)
+        var grid = new T[size.x, size.y, size.z];
+        var bounds = new IntBounds(Vector3Int.zero, size);
+        bounds.ForEach(i =>
         {
-            results += $"{phase}: {(Time.realtimeSinceStartup - time) * 1000} ms\n";
-            time = Time.realtimeSinceStartup;
+            grid[i.x, i.y, i.z] = create(i);
+            return true;
+        });
+
+        return (grid, bounds);
+    }
+}
+
+class DebrisTile
+{
+    static readonly float SAMPLE_DENSITY = 4f;
+    static readonly float CHUNK_DENSITY = 0.037f;
+    static readonly float MIN_CHUNK_SIZE = 0.2f;
+    public static readonly int TILE_SIZE = 20;
+
+    private static DebrisTile instance;
+    public static DebrisTile GetInstance()
+    {
+        return instance ??= new(Vector3Int.one * TILE_SIZE);
+    }
+
+    public class CellOptions
+    {
+        public class ChunkOption
+        {
+            public readonly Polytope chunk;
+            public readonly Vector3Int[] cells;
+
+            private ChunkOption(Polytope _chunk, Vector3Int[] _cells)
+            {
+                chunk = _chunk;
+                cells = _cells;
+            }
+
+            public static ChunkOption TryBuild(
+                IntBounds optionBounds,
+                List<Vector3Int> sampleCells,
+                Dictionary<Vector3Int, List<Vec3>> cellToSamples,
+                Dictionary<Vec3, Vector3Int> sampleToCell
+            )
+            {
+                // find cells within 
+                var samples = sampleCells
+                    .Where(cell => optionBounds.Contains(cell))
+                    .SelectMany(cell => cellToSamples[cell])
+                    .ToList();
+
+                if (samples.Count < 4)
+                    return null;
+
+                // create convex hull from restricted subset of samples
+                var chunk = Mesher.BuildConvexHull(samples.Select(p => (Vector3)p).ToList());
+
+                if (chunk == null || chunk.Volume < MIN_CHUNK_SIZE)
+                    return null;
+
+                // find constituent cells
+                var cells = new HashSet<Vector3Int>(samples.Select(sample => sampleToCell[sample]));
+
+                return new ChunkOption(chunk, cells.ToArray());
+            }
         }
-        phase = null;
+
+        public readonly Vector3Int maxSize;
+        public readonly ChunkOption[,,] sizes;
+
+        public CellOptions(
+            IntBounds bounds,
+            List<Vector3Int> sampleCells,
+            Dictionary<Vector3Int, List<Vec3>> cellToSamples,
+            Dictionary<Vec3, Vector3Int> sampleToCell
+        )
+        {
+            maxSize = bounds.size;
+
+            (sizes, _) = IntBounds.CreateGrid(maxSize, i =>
+            {
+                return ChunkOption.TryBuild(
+                    new IntBounds(bounds.min, bounds.min + i + Vector3Int.one),
+                    sampleCells, cellToSamples, sampleToCell
+                );
+            });
+        }
     }
-    public void Phase(string name)
+
+    public readonly Vector3Int size;
+    public readonly List<CellOptions>[,,] grid;
+
+    public DebrisTile(Vector3Int _size)
     {
-        EndPhase();
-        phase = name;
+        Timer t = new();
+        t.Phase("setup");
+
+        size = _size;
+
+        // create cells, samples, and chunks
+        var (cellGrid, bounds) = IntBounds.CreateGrid(size, i => i);
+        var cells = cellGrid.Cast<Vector3Int>().ToArray();
+
+        int sampleCount = Mathf.CeilToInt(cells.Length * SAMPLE_DENSITY);
+        int chunkCount = Mathf.CeilToInt(cells.Length * CHUNK_DENSITY);
+
+        var (sampleToCell, centerToSamples) = GenerateChunks(cells, sampleCount, chunkCount);
+
+        // create options for each chunk, cropped to each possible size
+        (grid, _) = IntBounds.CreateGrid<List<CellOptions>>(size, i => new());
+
+        foreach (var samples in centerToSamples.Values)
+        {
+            // map cells -> samples
+            var cellToSamples = new Dictionary<Vector3Int, List<Vec3>>();
+            foreach (var sample in samples)
+            {
+                var cell = sampleToCell[sample];
+                if (!cellToSamples.ContainsKey(cell))
+                {
+                    cellToSamples[cell] = new();
+                }
+                cellToSamples[cell].Add(sample);
+            }
+
+            // get all cells
+            var sampleCells = cellToSamples.Keys.ToList();
+            if (sampleCells.Count == 0) continue;
+
+            // find bounds of consistuent cells
+            var cellBounds = new IntBounds(
+                sampleCells.Aggregate((a, b) => Vector3Int.Min(a, b)),
+                sampleCells.Aggregate((a, b) => Vector3Int.Max(a, b)) + Vector3Int.one
+            );
+
+            var options = new CellOptions(
+                cellBounds, sampleCells, cellToSamples, sampleToCell
+            );
+            grid[cellBounds.min.x, cellBounds.min.y, cellBounds.min.z].Add(options);
+        }
+
+        t.End();
     }
-    public void End()
+
+    private T Choose<T>(T[] list)
     {
-        EndPhase();
-        Debug.Log(results);
+        return list[Random.Range(0, list.Length)];
+    }
+
+    private Vec3 RandomWithin(Vector3Int cell)
+    {
+        return new(cell + new Vector3(
+            Random.Range(0f, 1f),
+            Random.Range(0f, 1f),
+            Random.Range(0f, 1f)
+        ));
+    }
+
+    private (
+        Dictionary<Vec3, Vector3Int> sampleToCell,
+        Dictionary<Vec3, List<Vec3>> centerToSamples
+    ) GenerateChunks(Vector3Int[] cells, int sampleCount, int chunkCount)
+    {
+        // generate samples
+        var sampleToCell = Util.MakeMap<Vec3, Vector3Int>();
+        for (int i = 0; i < sampleCount; i++)
+        {
+            var cell = Choose(cells);
+            var sample = RandomWithin(cell);
+            sampleToCell[sample] = cell;
+        }
+
+        // generate chunk centers
+        var centerToSamples = Util.MakeMap<Vec3, List<Vec3>>();
+        for (int i = 0; i < chunkCount; i++)
+        {
+            var cell = Choose(cells);
+            var center = RandomWithin(cell);
+            centerToSamples[center] = new();
+        }
+
+        // classify samples by closest center
+        var centerTree = KDTree.Build(centerToSamples.Keys.ToList());
+
+        foreach (var sample in sampleToCell.Keys)
+        {
+            centerToSamples[centerTree.Nearest(sample)].Add(sample);
+        }
+
+        return (sampleToCell, centerToSamples);
     }
 }
 
 public class Destructible : MonoBehaviour
 {
-    static readonly float SAMPLE_DENSITY = 4f;
-    static readonly float CHUNK_DENSITY = 0.037f;
     static readonly int DIRECTION_SAMPLES = 20;
     static readonly float FORCE = 10f;
-    static readonly Vector3Int[] DIRECTIONS = new Vector3Int[]
-    {
-        Vector3Int.left,
-        Vector3Int.right,
-        Vector3Int.up,
-        Vector3Int.down,
-        Vector3Int.forward,
-        Vector3Int.back
-    };
-    static readonly int MAX_SIDE_CELLS = 30;
+    static readonly int MAX_SIDE_CELLS = DebrisTile.TILE_SIZE * 2;
     static float totalTime = 0;
 
     [SerializeField]
@@ -175,14 +322,7 @@ public class Destructible : MonoBehaviour
         //Timer t = new();
         //t.Phase("setup");
         gridSize = Vector3Int.CeilToInt(size / cellSize);
-        grid = new Cell[gridSize.x, gridSize.y, gridSize.z];
-        inxBounds = new(Vector3Int.zero, gridSize - Vector3Int.one);
-
-        inxBounds.ForEach(i =>
-        {
-            grid[i.x, i.y, i.z] = new(i);
-            return true;
-        });
+        (grid, inxBounds) = IntBounds.CreateGrid<Cell>(gridSize, i => new(i));
 
         meshCollider = GetComponent<MeshCollider>();
         meshFilter = GetComponent<MeshFilter>();
@@ -257,8 +397,6 @@ public class Destructible : MonoBehaviour
         }
 
         uvFaces = uvFaces.Map(f => f.WithScale(cellSize));
-
-        Debug.Log(uvFaces);
     }
 
     private delegate void ForEachDelegate(Cell cell, Vector3Int index);
@@ -270,61 +408,120 @@ public class Destructible : MonoBehaviour
             return true;
         });
     }
-    private Dictionary<K, V> MakeMap<K, V>() where K : class
-    {
-        return new(new IdentityEqualityComparer<K>());
-    }
-    private HashSet<T> MakeSet<T>() where T : class
-    {
-        return new(new IdentityEqualityComparer<T>());
-    }
     private void ComputeChunks()
     {
-        cellToChunks = MakeMap<Cell, HashSet<Polytope>>();
-        chunkToCells = MakeMap<Polytope, HashSet<Cell>>();
-        stuckChunks = MakeSet<Polytope>();
+        var tile = DebrisTile.GetInstance();
+        var cellSpaceUVs = uvFaces.Map(f => f.WithScale(1 / cellSize));
 
-        var cells = new List<Cell>();
+        cellToChunks = Util.MakeMap<Cell, HashSet<Polytope>>();
+        chunkToCells = Util.MakeMap<Polytope, HashSet<Cell>>();
+        stuckChunks = Util.MakeSet<Polytope>();
+
         ForEachCell((cell, _) =>
         {
-            cells.Add(cell);
+            cellToChunks[cell] = new();
         });
-        int sampleCount = Mathf.CeilToInt(cells.Count * SAMPLE_DENSITY);
-        int chunkCount = Mathf.CeilToInt(cells.Count * CHUNK_DENSITY);
 
-        var sampleToCell = GenerateSamples(cells, sampleCount);
-        var centers = GenerateChunkCenters(cells, chunkCount);
-
-        var centerLookup = KDTree.Build(centers);
-
-        if (centerLookup == null) return;
-
-        var centerToSamples = MakeMap<Vec3, List<Vec3>>();
-
-        foreach (var sample in sampleToCell.Keys)
+        void InstantiateTile(IntBounds bounds)
         {
-            var closest = centerLookup.Nearest(sample);
-            if (!centerToSamples.ContainsKey(closest))
-                centerToSamples[closest] = new();
-            centerToSamples[closest].Add(sample);
+            bounds.ForEach(globalInx =>
+            {
+                var inx = globalInx - bounds.min;
+                var maxUsableSize = bounds.size - inx;
+                foreach (var cellOptions in tile.grid[inx.x, inx.y, inx.z])
+                {
+                    // find appropriately sized option
+                    var usableSize = Vector3Int.Min(cellOptions.maxSize, maxUsableSize);
+                    var optionIndex = usableSize - Vector3Int.one;
+                    var option = cellOptions.sizes[optionIndex.x, optionIndex.y, optionIndex.z];
+
+                    if (option == null) continue;
+
+                    // instantiate option into this context
+                    var chunk = option.chunk.Map(p => (p + bounds.min) * cellSize);
+                    chunk.ProjectUVs(cellSpaceUVs);
+
+                    // create bidirectional one-to-many mappings
+                    var chunkCells = Util.MakeSet<Cell>();
+                    chunkToCells[chunk] = chunkCells;
+                    foreach (var tileCellInx in option.cells)
+                    {
+                        var loc = tileCellInx + bounds.min;
+                        var cell = grid[loc.x, loc.y, loc.z];
+                        cellToChunks[cell].Add(chunk);
+                        chunkCells.Add(cell);
+                    }
+                }
+
+                return true;
+            });
         }
 
-        foreach (var (center, samples) in centerToSamples)
+        for (int i = 0; i < gridSize.x; i += tile.size.x)
         {
-            var chunk = Mesher.BuildConvexHull(samples.Select(v => (Vector3)v).ToList(), uvFaces);
-            if (chunk == null || chunk.vertices.Count == 0) continue;
-            chunk = chunk.Scale(cellSize);
-            var chunkCells = MakeSet<Cell>();
-            chunkToCells[chunk] = chunkCells;
-            foreach (var sample in samples)
+            for (int j = 0; j < gridSize.y; j += tile.size.y)
             {
-                var cell = sampleToCell[sample];
-                if (!cellToChunks.ContainsKey(cell))
-                    cellToChunks[cell] = MakeSet<Polytope>();
-                cellToChunks[cell].Add(chunk);
-                chunkCells.Add(cell);
+                for (int k = 0; k < gridSize.z; k += tile.size.z)
+                {
+                    var tileMin = new Vector3Int(i, j, k);
+                    var tileMax = Vector3Int.Min(tileMin + tile.size, gridSize);
+                    InstantiateTile(new(tileMin, tileMax));
+                }
             }
         }
+        //var cells = new List<Cell>();
+        //ForEachCell((cell, _) =>
+        //{
+        //    cells.Add(cell);
+        //});
+        //int sampleCount = Mathf.CeilToInt(cells.Count * SAMPLE_DENSITY);
+        //int chunkCount = Mathf.CeilToInt(cells.Count * CHUNK_DENSITY);
+
+        //var sampleToCell = GenerateSamples(cells, sampleCount);
+        //var centers = GenerateChunkCenters(cells, chunkCount);
+
+        //var centerLookup = KDTree.Build(centers);
+
+        //if (centerLookup == null) return;
+
+        //var centerToSamples = Util.MakeMap<Vec3, List<Vec3>>();
+
+        //foreach (var center in centers)
+        //{
+        //    centerToSamples[center] = new();
+        //}
+
+        //foreach (var sample in sampleToCell.Keys)
+        //{
+        //    centerToSamples[centerLookup.Nearest(sample)].Add(sample);
+        //}
+
+        //foreach (var cell in sampleToCell.Values)
+        //{
+        //    cellToChunks[cell] = Util.MakeSet<Polytope>();
+        //}
+
+        //foreach (var (center, samples) in centerToSamples)
+        //{
+        //    // build convex hull & bail out
+        //    if (samples.Count < 4) continue;
+        //    var chunk = Mesher.BuildConvexHull(samples.Select(v => (Vector3)v).ToList());
+        //    if (chunk == null || chunk.vertices.Count == 0) continue;
+
+        //    // transform chunk
+        //    chunk = chunk.Scale(cellSize);
+        //    chunk.ProjectUVs(cellSpaceUVs);
+
+        //    // create one-to-many relationships between cells and chunks
+        //    var chunkCells = Util.MakeSet<Cell>();
+        //    chunkToCells[chunk] = chunkCells;
+        //    foreach (var sample in samples)
+        //    {
+        //        var cell = sampleToCell[sample];
+        //        cellToChunks[cell].Add(chunk);
+        //        chunkCells.Add(cell);
+        //    }
+        //}
     }
     private void RemoveChunk(Polytope chunk)
     {
@@ -448,7 +645,7 @@ public class Destructible : MonoBehaviour
     }
     private Polytope[] StickChunks(HashSet<Polytope> brokenChunks)
     {
-        var debris = MakeSet<Polytope>();
+        var debris = Util.MakeSet<Polytope>();
 
         foreach (var chunk in brokenChunks)
         {
@@ -476,7 +673,7 @@ public class Destructible : MonoBehaviour
     }
     private Dictionary<Vec3, Cell> GenerateSamples(List<Cell> hitCells, int sampleCount)
     {
-        var sampleToCell = MakeMap<Vec3, Cell>();
+        var sampleToCell = Util.MakeMap<Vec3, Cell>();
         for (int i = 0; i < sampleCount; i++)
         {
             var cell = hitCells[Random.Range(0, hitCells.Count)];
@@ -498,8 +695,8 @@ public class Destructible : MonoBehaviour
     }
     public HashSet<Polytope> GetChunks(List<Cell> cells)
     {
-        var result = MakeSet<Polytope>();
-        var empty = MakeSet<Polytope>();
+        var result = Util.MakeSet<Polytope>();
+        var empty = Util.MakeSet<Polytope>();
         foreach (var cell in cells)
         {
             result.AddRange(cellToChunks.GetValueOrDefault(cell, empty));

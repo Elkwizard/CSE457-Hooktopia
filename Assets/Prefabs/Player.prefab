@@ -383,7 +383,7 @@ MonoBehaviour:
   fireAction: {fileID: -8241042748933496232, guid: cf660dcf65c91444f89a99c4ba7f647f, type: 3}
   minFireSpeed: 10
   maxFireSpeed: 25
-  arrowPower: 1
+  arrowPower: 1.5
 --- !u!1 &6714684976773361673
 GameObject:
   m_ObjectHideFlags: 0
