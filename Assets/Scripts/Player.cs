@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    static public bool gameWon = false;
     private Rigidbody rb;
 
     [SerializeField] float maxHorizontalSpeed;
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
     
     private LineRenderer lineRenderer;
     private PlayerInput playerInput;
+    public PlayerManager manager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -50,6 +52,12 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
         bowHeld = false;
+    }
+
+    private void GameEnd()
+    {
+        Player.gameWon = true;
+        manager.GameEnd(this);
     }
 
     void Update()
@@ -65,6 +73,13 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Player.gameWon) {
+            return;
+        }
+        if (transform.position.y < -10) {
+            GameEnd();
+            return;
+        }
         UpdateBow();
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
@@ -217,5 +232,6 @@ public class Player : MonoBehaviour
     {
         return groundChecker.IsColliding();
     }
+
 
 }
