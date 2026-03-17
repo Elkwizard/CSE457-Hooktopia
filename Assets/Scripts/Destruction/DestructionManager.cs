@@ -40,7 +40,7 @@ abstract class PriorityScheduler<T> where T : class
             if (current.Value.owner == owner)
             {
 
-            toComplete.Add(current);
+                toComplete.Add(current);
             }
         }
 
@@ -124,13 +124,13 @@ class BVH<T>
     }
 }
 
-class DestructibleSetupScheduler : PriorityScheduler<Destructible>
+class DestructibleSetupScheduler : PriorityScheduler<GameObject>
 {
     private List<GameObject> hazards = new();
-    protected override float GetPriority(Destructible obj)
+    protected override float GetPriority(GameObject obj)
     {
         return hazards
-            .Select(hazard => (obj.gameObject.transform.position - hazard.transform.position).sqrMagnitude)
+            .Select(hazard => (obj.transform.position - hazard.transform.position).sqrMagnitude)
             .Aggregate(float.PositiveInfinity, Mathf.Min);
     }
 
@@ -149,6 +149,11 @@ class DestructibleSetupScheduler : PriorityScheduler<Destructible>
 
 public class DestructionManager : MonoBehaviour
 {
+    private class DestructibleObject
+    {
+        public Action<Sphere> destroy;
+        public GameObject owner;
+    }
     private static readonly float TIME_BUDGET = 0.01f; // seconds
     private static DestructionManager instanceCache;
     public static DestructionManager GetInstance()
@@ -160,9 +165,9 @@ public class DestructionManager : MonoBehaviour
         }
         return instanceCache;
     }
-    private BVH<Destructible> bvh;
-    private readonly List<(Destructible, Bounds)> walls = new();
-    private readonly Queue<(Destructible wall, Sphere hitSphere)> breakRequests = new();
+    private BVH<DestructibleObject> bvh;
+    private readonly List<(DestructibleObject, Bounds)> walls = new();
+    private readonly Queue<(DestructibleObject, Sphere)> breakRequests = new();
     private readonly DestructibleSetupScheduler setupScheduler = new();
 
     void Update()
@@ -170,9 +175,12 @@ public class DestructionManager : MonoBehaviour
         float startTime = Time.realtimeSinceStartup;
         if (breakRequests.Count > 0)
         {
-            var (wall, hitSphere) = breakRequests.Dequeue();
-            setupScheduler.Complete(wall);
-            wall.Break(hitSphere);
+            var (obj, hitSphere) = breakRequests.Dequeue();
+            if (obj.owner != null)
+            {
+                setupScheduler.Complete(obj.owner); // will silently do nothing for decorations (no associated tasks)
+                obj.destroy(hitSphere);
+            }
         }
         float remainingTime = TIME_BUDGET - (Time.realtimeSinceStartup - startTime);
         setupScheduler.Run(remainingTime);
@@ -183,24 +191,49 @@ public class DestructionManager : MonoBehaviour
         setupScheduler.AddHazard(hazard);
     }
 
+    public void AddDecoration(DestructibleDecoration plant)
+    {
+        walls.Add((
+            new DestructibleObject
+            {
+                destroy = plant.Break,
+                owner = plant.gameObject
+            },
+            plant.GetBounds()
+        ));
+    }
+
     public void AddDestructible(Destructible wall, Action setup)
     {
         walls.Add((
-            wall,
-            wall.gameObject.GetComponent<MeshCollider>().bounds
+            new DestructibleObject
+            {
+                destroy = wall.Break,
+                owner = wall.gameObject
+            },
+            wall.GetBounds()
         ));
-        setupScheduler.AddTask(wall, setup);
+        setupScheduler.AddTask(wall.gameObject, setup);
     }
 
     public void Break(Sphere sphere)
     {
         if (bvh == null || walls.Count > bvh.Count)
         {
-            bvh = BVH<Destructible>.Build(walls);
+            bvh = BVH<DestructibleObject>.Build(walls);
+
+            //foreach (var (_, bounds) in walls)
+            //{
+            //    var o = new GameObject("visualize");
+            //    var col = o.AddComponent<BoxCollider>();
+            //    col.center = bounds.center;
+            //    col.size = bounds.size;
+            //    col.isTrigger = true;
+            //}
         }
-        foreach (var wall in bvh.Query(sphere.Bounds))
+        foreach (var obj in bvh.Query(sphere.Bounds))
         {
-            breakRequests.Enqueue((wall, sphere));
+            breakRequests.Enqueue((obj, sphere));
         }
     }
 }

@@ -2,9 +2,10 @@ Shader "Lit/Dither"
 {
     Properties
     {
+        _Color ("Main Color", Color) = (1, 1, 1, 1)
         _MainTex ("Texture", 2D) = "white" {}
         _Tiling ("Tiling", Float) = 1.0
-        _Glossiness ("Smoothness", Range(0.000000,1.000000)) = 0.500000
+        _Glossiness ("Smoothness", Range(0.0, 1.0)) = 0.5
     }
     SubShader
     {
@@ -45,6 +46,7 @@ Shader "Lit/Dither"
                 return o;
             }
 
+            fixed4 _Color;
             sampler2D _MainTex;
             fixed _Glossiness;
 
@@ -112,7 +114,7 @@ Shader "Lit/Dither"
                 // return pxSize;
                 float2 gid = voronoi(uv, pxSize);//floor(uv / pxSize);
                 // float2 guv = (uv % pxSize) / pxSize;
-                fixed3 color = tex2D(_MainTex, gid * pxSize).rgb;
+                fixed3 color = tex2D(_MainTex, gid * pxSize).rgb * _Color.rgb;
 
                 fixed3 dithered = fixed3(
                     dither(color.r, gid),

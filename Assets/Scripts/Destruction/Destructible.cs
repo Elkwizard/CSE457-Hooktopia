@@ -655,4 +655,9 @@ public class Destructible : MonoBehaviour
         foreach (var chunk in debris) MakeDebris(chunk, forceSource);
         t.End();
     }
+
+    public Bounds GetBounds()
+    {
+        return gameObject.GetComponent<MeshCollider>().bounds;
+    }
 }
