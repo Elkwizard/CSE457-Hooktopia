@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
     {
         Player.gameWon = true;
         manager.GameEnd(this);
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void Update()
