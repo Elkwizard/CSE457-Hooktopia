@@ -381,7 +381,19 @@ MonoBehaviour:
     m_ActionId: 35e36c19-2e35-415b-9696-0c2162047673
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5165344009601096338}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 835dfc7e-8f2e-40fd-a9aa-5e8a893429f3
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
   - m_PersistentCalls:
@@ -491,7 +503,6 @@ MonoBehaviour:
   maxBowTime: 1
   arrow: {fileID: 8801936726551766758}
   bowDrawDistance: 0.15
-  fireAction: {fileID: -8241042748933496232, guid: cf660dcf65c91444f89a99c4ba7f647f, type: 3}
   minFireSpeed: 10
   maxFireSpeed: 25
   arrowPower: 1.5
