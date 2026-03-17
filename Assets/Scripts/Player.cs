@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         if (hookInstance)
         {
             Vector3 difference = hookInstance.transform.position - transform.position;
-            if (difference.magnitude > maxHookDist)
+            if (difference.magnitude > maxHookDist || hookInstance.IsLoose())
             {
                 Unhook();
             }

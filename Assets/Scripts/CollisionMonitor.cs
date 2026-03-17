@@ -11,7 +11,21 @@ public class CollisionMonitor : MonoBehaviour
         colliding = false;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        colliding = true;
+    }
+
     void OnTriggerStay()
+    {
+        colliding = true;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        colliding = true;
+    }
+    void OnCollisionStay(Collision collision)
     {
         colliding = true;
     }
