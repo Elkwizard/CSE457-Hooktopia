@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &268209802624987968
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,10 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &530809194422844055
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,10 +383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &704808317007054722
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,10 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &786231328229192824
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,10 +641,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &910994244479198885
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,10 +770,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &1005288821270188663
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,10 +899,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &1651827341426059644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,10 +1028,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &1713195011701193841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,10 +1157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &1731525535021773406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,10 +1286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &1740820806037154122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,10 +1415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2125434906010430412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,10 +1544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2403259120920130348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,10 +1673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2519419443720095523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1802,10 +1802,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2612701974308612313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,10 +1931,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2660824045832649838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,10 +2060,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2674263279001786957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,10 +2189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &2743972996198907144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,10 +2407,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3059860193522062038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,10 +2536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3302119389236270333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,10 +2665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3462831489404867336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,10 +2794,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3689926148322611898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,10 +2923,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3691905917620648249
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,10 +3052,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3696503110334693711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,10 +3181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3709205293369709485
 GameObject:
   m_ObjectHideFlags: 0
@@ -3310,10 +3310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3820368300387648343
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,8 +3323,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6340413021007218668}
-  - component: {fileID: 791106961841799996}
-  - component: {fileID: 1819606141349462978}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -3348,77 +3346,6 @@ Transform:
   - {fileID: 7319606406839322247}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &791106961841799996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820368300387648343}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 511267683
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
---- !u!114 &1819606141349462978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820368300387648343}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.Components.NetworkTransform
-  ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 0
-  AutoOwnerAuthorityTickOffset: 1
-  PositionInterpolationType: 0
-  RotationInterpolationType: 0
-  ScaleInterpolationType: 0
-  PositionLerpSmoothing: 1
-  PositionMaxInterpolationTime: 0.1
-  RotationLerpSmoothing: 1
-  RotationMaxInterpolationTime: 0.1
-  ScaleLerpSmoothing: 1
-  ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
-  TickSyncChildren: 0
-  UseUnreliableDeltas: 0
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  SwitchTransformSpaceWhenParented: 0
-  Interpolate: 1
-  SlerpPosition: 0
 --- !u!1 &3905693379772491899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3544,10 +3471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &3926872381820408884
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,10 +3600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &4040483025876712432
 GameObject:
   m_ObjectHideFlags: 0
@@ -3802,10 +3729,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5015871905102701678
 GameObject:
   m_ObjectHideFlags: 0
@@ -3931,10 +3858,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5219839980975786457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4060,10 +3987,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5234870507671426655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,10 +4116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5290178323472290367
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,10 +4245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5584934415204223160
 GameObject:
   m_ObjectHideFlags: 0
@@ -4447,10 +4374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5621697052178908482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4576,10 +4503,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &5868674263148435752
 GameObject:
   m_ObjectHideFlags: 0
@@ -4705,10 +4632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6208524236892551226
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,10 +4761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6271429710583251782
 GameObject:
   m_ObjectHideFlags: 0
@@ -4963,10 +4890,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6325376234402126342
 GameObject:
   m_ObjectHideFlags: 0
@@ -5092,10 +5019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6442776226063172684
 GameObject:
   m_ObjectHideFlags: 0
@@ -5221,10 +5148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6542377053750742456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5350,10 +5277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6569852593362472280
 GameObject:
   m_ObjectHideFlags: 0
@@ -5479,10 +5406,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6591892698147088878
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,10 +5535,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6735229136008163129
 GameObject:
   m_ObjectHideFlags: 0
@@ -5737,10 +5664,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6916820801111850039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5866,10 +5793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &6994893446534374315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5995,10 +5922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &7666069408615625766
 GameObject:
   m_ObjectHideFlags: 0
@@ -6124,10 +6051,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &7692425518051808633
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,10 +6180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &7802919707370217707
 GameObject:
   m_ObjectHideFlags: 0
@@ -6382,10 +6309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &7882289513821904610
 GameObject:
   m_ObjectHideFlags: 0
@@ -6511,10 +6438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &7922124473779099701
 GameObject:
   m_ObjectHideFlags: 0
@@ -6640,10 +6567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &7943917073495624468
 GameObject:
   m_ObjectHideFlags: 0
@@ -6769,10 +6696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &8241064559293927905
 GameObject:
   m_ObjectHideFlags: 0
@@ -6898,10 +6825,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &8364685439330875428
 GameObject:
   m_ObjectHideFlags: 0
@@ -7027,10 +6954,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &8369714476592263235
 GameObject:
   m_ObjectHideFlags: 0
@@ -7156,10 +7083,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &8432255673596752447
 GameObject:
   m_ObjectHideFlags: 0
@@ -7285,10 +7212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &8529269121970076419
 GameObject:
   m_ObjectHideFlags: 0
@@ -7414,10 +7341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &8981920950855853920
 GameObject:
   m_ObjectHideFlags: 0
@@ -7543,10 +7470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0
 --- !u!1 &9017638257499320294
 GameObject:
   m_ObjectHideFlags: 0
@@ -7672,7 +7599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a858ca6e7c7fe0e4196fef9062255e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
-  ShowTopMostFoldoutHeaderGroup: 1
   chunkPrefab: {fileID: 20720419963887454, guid: baee592e4b9b3d145a902b44e76ed86f, type: 3}
   debrisPrefab: {fileID: 2940309364969752528, guid: 65e5137f7b9b0b745a94bc9ef4375283, type: 3}
   cellSize: 0.125
+  IsChunkPrefab: 0

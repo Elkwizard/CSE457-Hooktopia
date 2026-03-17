@@ -176,7 +176,7 @@ public class DestructionManager : MonoBehaviour
         bool brokeDestructible = false;
         while (breakRequests.Count > 0)
         {
-            var (obj, hitSphere) = breakRequests.Dequeue();
+            var (obj, hitSphere) = breakRequests.Peek();
             if (obj.owner != null)
             {
                 if (obj.owner.GetComponent<Destructible>() != null)
@@ -186,6 +186,7 @@ public class DestructionManager : MonoBehaviour
                     setupScheduler.Complete(obj.owner);
                 }
                 obj.destroy(hitSphere);
+                breakRequests.Dequeue();
             }
         }
         float remainingTime = TIME_BUDGET - (Time.realtimeSinceStartup - startTime);
@@ -239,6 +240,7 @@ public class DestructionManager : MonoBehaviour
         }
         foreach (var obj in bvh.Query(sphere.Bounds))
         {
+            Debug.Log("enqueue");
             breakRequests.Enqueue((obj, sphere));
         }
     }

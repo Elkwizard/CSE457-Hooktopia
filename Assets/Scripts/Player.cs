@@ -222,7 +222,9 @@ public class Player : MonoBehaviour
             {
                 if (hookInstance.IsHooked())
                 {
-                    yanked = yankPower * (hookInstance.transform.position - transform.position);
+                    var toHook = hookInstance.transform.position - transform.position;
+                    toHook *= toHook.magnitude;
+                    yanked = yankPower * toHook;
                 }
                 Unhook();
             }

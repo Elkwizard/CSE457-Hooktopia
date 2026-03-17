@@ -123,7 +123,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2741335466789347614}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -496,7 +496,7 @@ MonoBehaviour:
   launchVelocity: {x: 0, y: 0, z: 25}
   slack: 2
   pullPower: 20
-  yankPower: 15
+  yankPower: 10
   maxHookDist: 50
   hookPrefab: {fileID: 8203681054021796800, guid: fc8fa22ea47a1364fb0298099d36d9b2, type: 3}
   camera: {fileID: 131444704414154590}
@@ -592,7 +592,7 @@ Transform:
   m_GameObject: {fileID: 7379983605720030243}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.861, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
