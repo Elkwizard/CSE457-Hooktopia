@@ -485,6 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139bd9d75d5b3c5438a519b4848ae7b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  stickTurnSpeed: 35
   maxHorizontalSpeed: 5
   maxAbsoluteSpeed: 30
   acceleration: 30
@@ -506,6 +507,7 @@ MonoBehaviour:
   minFireSpeed: 12
   maxFireSpeed: 45
   arrowPower: 1.5
+  manager: {fileID: 0}
 --- !u!1 &6714684976773361673
 GameObject:
   m_ObjectHideFlags: 0

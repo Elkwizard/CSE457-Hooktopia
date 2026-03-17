@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     static public bool gameWon = false;
     private Rigidbody rb;
 
+    [SerializeField] float stickTurnSpeed;
     [SerializeField] float maxHorizontalSpeed;
     [SerializeField] float maxAbsoluteSpeed;
     [SerializeField] float acceleration;
@@ -192,7 +193,7 @@ public class Player : MonoBehaviour
             turnControl += turn;
         } else
         {
-            turnControl = turn;
+            turnControl = turn * stickTurnSpeed;
         }
     }
 
