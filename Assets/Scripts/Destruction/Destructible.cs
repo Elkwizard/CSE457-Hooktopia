@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Unity.Netcode;
 
 public class Island
 {
