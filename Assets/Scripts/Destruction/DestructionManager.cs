@@ -173,12 +173,18 @@ public class DestructionManager : MonoBehaviour
     void Update()
     {
         float startTime = Time.realtimeSinceStartup;
-        if (breakRequests.Count > 0)
+        bool brokeDestructible = false;
+        while (breakRequests.Count > 0)
         {
             var (obj, hitSphere) = breakRequests.Dequeue();
             if (obj.owner != null)
             {
-                setupScheduler.Complete(obj.owner); // will silently do nothing for decorations (no associated tasks)
+                if (obj.owner.GetComponent<Destructible>() != null)
+                {
+                    if (brokeDestructible) break;
+                    brokeDestructible = true;
+                    setupScheduler.Complete(obj.owner);
+                }
                 obj.destroy(hitSphere);
             }
         }

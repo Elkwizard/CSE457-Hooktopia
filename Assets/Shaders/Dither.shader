@@ -163,7 +163,8 @@ Shader "Lit/Dither"
                 float exponent = exp(3.0 * _Glossiness);
                 float specular = pow(max(0, -dot(reflDir, lightDir)), exponent) * _Glossiness;
 
-                albedo.rgb *= _LightColor0 * (diffuse + specular) * shadow + UNITY_LIGHTMODEL_AMBIENT;
+                float ambient = ShadeSH9(half4(i.normal, 1));
+                albedo.rgb *= _LightColor0 * (diffuse + specular) * shadow + ambient;
                 return albedo;
                 // return fixed4(tex2D(_OcclusionMap, i.uv).r, 0, 0, 1);
                 // make sure the weights sum up to 1 (divide by sum of x+y+z)
