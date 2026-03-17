@@ -500,11 +500,11 @@ MonoBehaviour:
   groundChecker: {fileID: 131541434592410997}
   groundDrag: 0.1
   airDrag: 0.05
-  maxBowTime: 1
+  maxBowTime: 2
   arrow: {fileID: 8801936726551766758}
   bowDrawDistance: 0.15
-  minFireSpeed: 10
-  maxFireSpeed: 25
+  minFireSpeed: 12
+  maxFireSpeed: 45
   arrowPower: 1.5
 --- !u!1 &6714684976773361673
 GameObject:
