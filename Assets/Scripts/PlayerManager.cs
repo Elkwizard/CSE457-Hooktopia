@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] List<Transform> startingPoints;
     [SerializeField] List<string> playerLayers;
     [SerializeField] GameObject winText;
+    [SerializeField] GameObject restartButton;
     [SerializeField] GameObject startingCam;
     [SerializeField] GameObject joinText;
     private bool isGameOver;
@@ -55,7 +57,16 @@ public class PlayerManager : MonoBehaviour
 
         PlayerInput input = loser.GetComponent<PlayerInput>();
         winText.SetActive(true);
+        restartButton.SetActive(true);
         string winnerName = input == playerInputs[0] ? "Player Two" : "Player One";
         winText.GetComponent<TextMeshProUGUI>().text = $"{winnerName} Wins!";
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
 }
