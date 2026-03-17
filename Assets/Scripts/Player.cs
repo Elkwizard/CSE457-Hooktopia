@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    static public bool gameWon = false;
     private Rigidbody rb;
     private Animator anim;
 
@@ -59,9 +58,7 @@ public class Player : MonoBehaviour
 
     private void GameEnd()
     {
-        Player.gameWon = true;
         manager.GameEnd(this);
-        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void Update()
@@ -77,7 +74,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Player.gameWon) {
+        if (manager.IsGameOver()) {
             return;
         }
         if (transform.position.y < -10) {

@@ -5,12 +5,13 @@ using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
-    private List<PlayerInput> playerInputs = new List<PlayerInput>();
+    private readonly List<PlayerInput> playerInputs = new ();
     [SerializeField] List<Transform> startingPoints;
     [SerializeField] List<string> playerLayers;
     [SerializeField] GameObject winText;
     [SerializeField] GameObject startingCam;
     [SerializeField] GameObject joinText;
+    private bool isGameOver;
 
 
     private PlayerInputManager playerInputManager;
@@ -19,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     {
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
         playerInputManager.onPlayerJoined += AddPlayer;
+        isGameOver = false;
     }
 
 
@@ -39,14 +41,21 @@ public class PlayerManager : MonoBehaviour
         Player player = playerInput.GetComponent<Player>();
         player.manager = this;
     }
+
+    public bool IsGameOver()
+    {
+        return isGameOver;
+    }
     
-    public void GameEnd(Player player) {
-        PlayerInput input = player.GetComponent<PlayerInput>();
-        winText.SetActive(true);
-        if (input == playerInputs[0]) {
-            winText.GetComponent<TextMeshProUGUI>().text  = "Player Two Wins";
-        } else {
-            winText.GetComponent<TextMeshProUGUI>().text  = "Player One Wins";
+    public void GameEnd(Player loser) {
+        isGameOver = true;
+        foreach (var player in playerInputs) {
+            player.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
+
+        PlayerInput input = loser.GetComponent<PlayerInput>();
+        winText.SetActive(true);
+        string winnerName = input == playerInputs[0] ? "Player Two" : "Player One";
+        winText.GetComponent<TextMeshProUGUI>().text = $"{winnerName} Wins!";
     }
 }
