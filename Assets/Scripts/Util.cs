@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -28,31 +27,50 @@ public static class Util
 }
 public class Timer
 {
-    string phase;
-    string results;
-    float time;
-    public Timer()
+    private static bool DISABLED = true;
+    private readonly string title;
+    private readonly float startTime;
+    private string currentPhase;
+    private Dictionary<string, (float total, int count)> phases = new();
+    private float phaseStartTime;
+    public Timer(string _title)
     {
-        time = Time.realtimeSinceStartup;
-        results = "";
+        startTime = phaseStartTime = Time.realtimeSinceStartup;
+        title = _title;
+    }
+    private string Format(float seconds)
+    {
+        return $"{seconds * 1000} ms";
     }
     private void EndPhase()
     {
-        if (phase != null)
+        if (currentPhase != null)
         {
-            results += $"{phase}: {(Time.realtimeSinceStartup - time) * 1000} ms\n";
-            time = Time.realtimeSinceStartup;
+            float duration = Time.realtimeSinceStartup - phaseStartTime;
+            var (total, count) = phases.GetValueOrDefault(currentPhase, (0, 0));
+            phases[currentPhase] = (total + duration, count + 1);
+            phaseStartTime = Time.realtimeSinceStartup;
         }
-        phase = null;
+        currentPhase = null;
     }
     public void Phase(string name)
     {
+        if (DISABLED) return;
         EndPhase();
-        phase = name;
+        currentPhase = name;
     }
     public void End()
     {
+        if (DISABLED) return;
         EndPhase();
-        Debug.Log(results);
+        float duration = Time.realtimeSinceStartup - startTime;
+        string log = $"{title}: {Format(duration)}";
+
+        foreach (var (name, (total, count)) in phases)
+        {
+            log += $"\n{name}: {Format(total)}";
+        }
+        
+        Debug.Log(log);
     }
 }

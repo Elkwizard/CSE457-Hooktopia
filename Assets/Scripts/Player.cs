@@ -2,10 +2,12 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.InputSystem;
 
-public class Player : NetworkBehaviour
+public class Player : MonoBehaviour
 {
+    static public bool gameWon = false;
     private Rigidbody rb;
 
+    [SerializeField] float stickTurnSpeed;
     [SerializeField] float maxHorizontalSpeed;
     [SerializeField] float maxAbsoluteSpeed;
     [SerializeField] float acceleration;
@@ -30,17 +32,19 @@ public class Player : NetworkBehaviour
     [SerializeField] float maxBowTime;
     [SerializeField] GameObject arrow;
     [SerializeField] float bowDrawDistance;
-    [SerializeField] InputActionReference fireAction;
     [SerializeField] float minFireSpeed;
     [SerializeField] float maxFireSpeed;
+    bool bowHeld;
     public float arrowPower;
     float bowTime;
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
+    private bool turnIsDelta = false;
     
     private LineRenderer lineRenderer;
     private PlayerInput playerInput;
+    public PlayerManager manager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -48,47 +52,45 @@ public class Player : NetworkBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
+        bowHeld = false;
     }
 
-    public override void OnNetworkSpawn()
+    private void GameEnd()
     {
-        if (IsOwner)
-        {
-            playerInput = GetComponent<PlayerInput>();
-            playerInput.enabled = true;
-        } else {
-            camera.enabled = false;
-            camera.GetComponent<AudioListener>().enabled = false;
-        }
+        Player.gameWon = true;
+        manager.GameEnd(this);
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     void Update()
     {
-        if (!IsOwner) {
-            return;
-        }
-        lineRenderer.SetPosition(0, transform.position + new Vector3(-0.5f, 0, 0));
+        var lineOrigin = transform.position + new Vector3(-0.5f, 0, 0);
+        lineRenderer.SetPosition(0, lineOrigin);
         if (hookInstance) {
             lineRenderer.SetPosition(1, hookInstance.transform.position);
         } else {
-            lineRenderer.SetPosition(1, transform.position + new Vector3(-0.5f, 0, 0));
+            lineRenderer.SetPosition(1, lineOrigin);
         }
     }
 
     void FixedUpdate()
     {
-        if (!IsOwner) {
+        if (Player.gameWon) {
+            return;
+        }
+        if (transform.position.y < -10) {
+            GameEnd();
             return;
         }
         UpdateBow();
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
         camera.transform.localRotation = Quaternion.Euler(camera.transform.localEulerAngles.x - turnControl.y * turnSpeed, 0f, 0f);
-        turnControl = new Vector2(0, 0);
+        if (turnIsDelta) turnControl = Vector2.zero;
 
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
-        Vector3 oldXZVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 oldXZVelocity = new (rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 newVelocity = oldXZVelocity + acceleration * Time.deltaTime * additionalVector;
         // cap speed
         if (newVelocity.magnitude > maxHorizontalSpeed)
@@ -100,7 +102,7 @@ public class Player : NetworkBehaviour
         if (hookInstance)
         {
             Vector3 difference = hookInstance.transform.position - transform.position;
-            if (difference.magnitude > maxHookDist)
+            if (difference.magnitude > maxHookDist || hookInstance.IsLoose())
             {
                 Unhook();
             }
@@ -141,7 +143,7 @@ public class Player : NetworkBehaviour
     {
         float t = bowTime / maxBowTime;
 
-        if (fireAction.action.IsPressed())
+        if (bowHeld)
         {
             bowTime += Time.deltaTime;
         }
@@ -164,19 +166,18 @@ public class Player : NetworkBehaviour
         }
     }
 
+    public void Fire(InputAction.CallbackContext context)
+    {
+        bowHeld = context.ReadValue<float>() > 0.5;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         horizontalControl = context.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         // Check if the jump button was pressed and the player is grounded
         if (context.performed && IsOnGround())
         {
@@ -186,17 +187,19 @@ public class Player : NetworkBehaviour
 
     public void Turn(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
+        var turn = context.ReadValue<Vector2>();
+        turnIsDelta = context.control.device.name == "Mouse"; // this is hacky, please fix
+        if (turnIsDelta)
+        {
+            turnControl += turn;
+        } else
+        {
+            turnControl = turn * stickTurnSpeed;
         }
-        turnControl += context.ReadValue<Vector2>();
     }
 
     public void Hook(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         if (context.phase == InputActionPhase.Performed)
         {
 
@@ -231,5 +234,6 @@ public class Player : NetworkBehaviour
     {
         return groundChecker.IsColliding();
     }
+
 
 }

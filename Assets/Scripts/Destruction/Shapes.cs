@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using System.Linq;
 using UnityEngine;
-using Unity.VisualScripting;
 
 #nullable enable
 public class Vec3
@@ -131,7 +129,7 @@ public class Polytope
 
     public void ProjectUVs(UVFaces faces)
     {
-        uvs = new();
+        uvs = new(vertices.Count);
         for (int i = 0; i < vertices.Count; i++)
         {
             uvs.Add(faces.GetFace(normals[i]).GetUV(vertices[i]));

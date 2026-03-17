@@ -2,9 +2,10 @@ Shader "Lit/Dither"
 {
     Properties
     {
+        _Color ("Main Color", Color) = (1, 1, 1, 1)
         _MainTex ("Texture", 2D) = "white" {}
         _Tiling ("Tiling", Float) = 1.0
-        _Glossiness ("Smoothness", Range(0.000000,1.000000)) = 0.500000
+        _Glossiness ("Smoothness", Range(0.0, 1.0)) = 0.5
     }
     SubShader
     {
@@ -45,6 +46,7 @@ Shader "Lit/Dither"
                 return o;
             }
 
+            fixed4 _Color;
             sampler2D _MainTex;
             fixed _Glossiness;
 
@@ -112,7 +114,7 @@ Shader "Lit/Dither"
                 // return pxSize;
                 float2 gid = voronoi(uv, pxSize);//floor(uv / pxSize);
                 // float2 guv = (uv % pxSize) / pxSize;
-                fixed3 color = tex2D(_MainTex, gid * pxSize).rgb;
+                fixed3 color = tex2D(_MainTex, gid * pxSize).rgb * _Color.rgb;
 
                 fixed3 dithered = fixed3(
                     dither(color.r, gid),
@@ -161,7 +163,8 @@ Shader "Lit/Dither"
                 float exponent = exp(3.0 * _Glossiness);
                 float specular = pow(max(0, -dot(reflDir, lightDir)), exponent) * _Glossiness;
 
-                albedo.rgb *= _LightColor0 * (diffuse + specular) * shadow + UNITY_LIGHTMODEL_AMBIENT;
+                float ambient = ShadeSH9(half4(i.normal, 1));
+                albedo.rgb *= _LightColor0 * (diffuse + specular) * shadow + ambient;
                 return albedo;
                 // return fixed4(tex2D(_OcclusionMap, i.uv).r, 0, 0, 1);
                 // make sure the weights sum up to 1 (divide by sum of x+y+z)
