@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.InputSystem;
 
-public class Player : NetworkBehaviour
+public class Player : MonoBehaviour
 {
     private Rigidbody rb;
 
@@ -49,9 +49,10 @@ public class Player : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
     }
-
+    /*
     public override void OnNetworkSpawn()
     {
+        print("called");
         if (IsOwner)
         {
             playerInput = GetComponent<PlayerInput>();
@@ -60,13 +61,13 @@ public class Player : NetworkBehaviour
             camera.enabled = false;
             camera.GetComponent<AudioListener>().enabled = false;
         }
-    }
+    }*/
 
     void Update()
     {
-        if (!IsOwner) {
-            return;
-        }
+        //if (!IsOwner) {
+        //    return;
+        //}
         lineRenderer.SetPosition(0, transform.position + new Vector3(-0.5f, 0, 0));
         if (hookInstance) {
             lineRenderer.SetPosition(1, hookInstance.transform.position);
@@ -77,9 +78,9 @@ public class Player : NetworkBehaviour
 
     void FixedUpdate()
     {
-        if (!IsOwner) {
-            return;
-        }
+        //if (!IsOwner) {
+        //    return;
+        //}
         UpdateBow();
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
@@ -166,17 +167,11 @@ public class Player : NetworkBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         horizontalControl = context.ReadValue<Vector2>();
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         // Check if the jump button was pressed and the player is grounded
         if (context.performed && IsOnGround())
         {
@@ -186,17 +181,11 @@ public class Player : NetworkBehaviour
 
     public void Turn(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         turnControl += context.ReadValue<Vector2>();
     }
 
     public void Hook(InputAction.CallbackContext context)
     {
-        if (!IsOwner) {
-            return;
-        }
         if (context.phase == InputActionPhase.Performed)
         {
 
