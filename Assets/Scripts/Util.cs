@@ -1,10 +1,6 @@
-
-using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem.LowLevel;
 class IdentityEqualityComparer<T> : IEqualityComparer<T> where T : class
 {
     public bool Equals(T v1, T v2)

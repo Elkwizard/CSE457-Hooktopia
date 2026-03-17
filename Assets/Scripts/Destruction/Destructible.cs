@@ -1,23 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-//using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Xml.Linq;
-using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UIElements;
-using static Unity.VectorGraphics.VectorUtils;
-using static Unity.VisualScripting.Member;
-using static UnityEngine.Audio.ProcessorInstance;
 using Random = UnityEngine.Random;
 
 public class Island
