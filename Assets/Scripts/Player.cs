@@ -30,14 +30,15 @@ public class Player : MonoBehaviour
     [SerializeField] float maxBowTime;
     [SerializeField] GameObject arrow;
     [SerializeField] float bowDrawDistance;
-    [SerializeField] InputActionReference fireAction;
     [SerializeField] float minFireSpeed;
     [SerializeField] float maxFireSpeed;
+    bool bowHeld;
     public float arrowPower;
     float bowTime;
 
     private Vector2 horizontalControl;
     private Vector2 turnControl;
+    private bool turnIsDelta = false;
     
     private LineRenderer lineRenderer;
     private PlayerInput playerInput;
@@ -48,48 +49,31 @@ public class Player : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
+        bowHeld = false;
     }
-    /*
-    public override void OnNetworkSpawn()
-    {
-        print("called");
-        if (IsOwner)
-        {
-            playerInput = GetComponent<PlayerInput>();
-            playerInput.enabled = true;
-        } else {
-            camera.enabled = false;
-            camera.GetComponent<AudioListener>().enabled = false;
-        }
-    }*/
 
     void Update()
     {
-        //if (!IsOwner) {
-        //    return;
-        //}
-        lineRenderer.SetPosition(0, transform.position + new Vector3(-0.5f, 0, 0));
+        var lineOrigin = transform.position + new Vector3(-0.5f, 0, 0);
+        lineRenderer.SetPosition(0, lineOrigin);
         if (hookInstance) {
             lineRenderer.SetPosition(1, hookInstance.transform.position);
         } else {
-            lineRenderer.SetPosition(1, transform.position + new Vector3(-0.5f, 0, 0));
+            lineRenderer.SetPosition(1, lineOrigin);
         }
     }
 
     void FixedUpdate()
     {
-        //if (!IsOwner) {
-        //    return;
-        //}
         UpdateBow();
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
         camera.transform.localRotation = Quaternion.Euler(camera.transform.localEulerAngles.x - turnControl.y * turnSpeed, 0f, 0f);
-        turnControl = new Vector2(0, 0);
+        if (turnIsDelta) turnControl = Vector2.zero;
 
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
-        Vector3 oldXZVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 oldXZVelocity = new (rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 newVelocity = oldXZVelocity + acceleration * Time.deltaTime * additionalVector;
         // cap speed
         if (newVelocity.magnitude > maxHorizontalSpeed)
@@ -142,7 +126,7 @@ public class Player : MonoBehaviour
     {
         float t = bowTime / maxBowTime;
 
-        if (fireAction.action.IsPressed())
+        if (bowHeld)
         {
             bowTime += Time.deltaTime;
         }
@@ -165,6 +149,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Fire(InputAction.CallbackContext context)
+    {
+        bowHeld = context.ReadValue<float>() > 0.5;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         horizontalControl = context.ReadValue<Vector2>();
@@ -181,7 +170,15 @@ public class Player : MonoBehaviour
 
     public void Turn(InputAction.CallbackContext context)
     {
-        turnControl += context.ReadValue<Vector2>();
+        var turn = context.ReadValue<Vector2>();
+        turnIsDelta = context.control.device.name == "Mouse"; // this is hacky, please fix
+        if (turnIsDelta)
+        {
+            turnControl += turn;
+        } else
+        {
+            turnControl = turn;
+        }
     }
 
     public void Hook(InputAction.CallbackContext context)

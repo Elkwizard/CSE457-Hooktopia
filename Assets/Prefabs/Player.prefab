@@ -381,7 +381,19 @@ MonoBehaviour:
     m_ActionId: 35e36c19-2e35-415b-9696-0c2162047673
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5165344009601096338}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 835dfc7e-8f2e-40fd-a9aa-5e8a893429f3
     m_ActionName: 'Player/Fire[/Mouse/leftButton]'
   - m_PersistentCalls:
@@ -488,12 +500,11 @@ MonoBehaviour:
   groundChecker: {fileID: 131541434592410997}
   groundDrag: 0.1
   airDrag: 0.05
-  maxBowTime: 1
+  maxBowTime: 2
   arrow: {fileID: 8801936726551766758}
   bowDrawDistance: 0.15
-  fireAction: {fileID: -8241042748933496232, guid: cf660dcf65c91444f89a99c4ba7f647f, type: 3}
-  minFireSpeed: 10
-  maxFireSpeed: 25
+  minFireSpeed: 12
+  maxFireSpeed: 45
   arrowPower: 1.5
 --- !u!1 &6714684976773361673
 GameObject:
@@ -538,7 +549,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5469761396972855479}
   - component: {fileID: 131444704414154590}
-  - component: {fileID: 3039442068555196959}
   - component: {fileID: 4412045266293993469}
   m_Layer: 7
   m_Name: Camera
@@ -614,14 +624,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3039442068555196959
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7379983605720030243}
-  m_Enabled: 1
 --- !u!114 &4412045266293993469
 MonoBehaviour:
   m_ObjectHideFlags: 0

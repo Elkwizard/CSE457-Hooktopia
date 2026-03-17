@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Matrix2x2
@@ -14,7 +16,7 @@ public class Matrix2x2
             float c = x.y;
             float d = y.y;
             float det = a * d - b * c;
-            if (Mathf.Abs(det) < 0.001) return null;
+            if (Mathf.Abs(det) < 0.00001) return null;
 
             return new Matrix2x2(new(d, -c), new(-b, a)) * (1.0f / det);
         }
@@ -47,12 +49,12 @@ public class Matrix2x2
     }
 }
 
-public class AffineTransform
+public struct AffineTransform
 {
-    public readonly Matrix2x2 linear;
-    public readonly Vector2 offset;
+    public readonly float2x2 linear;
+    public readonly float2 offset;
 
-    public AffineTransform(Matrix2x2 _linear, Vector2 _offset)
+    public AffineTransform(float2x2 _linear, float2 _offset)
     {
         linear = _linear;
         offset = _offset;
@@ -63,9 +65,10 @@ public class AffineTransform
         return $"(\\x. {linear}x + {offset})";
     }
 
-    public static Vector2 operator *(AffineTransform lhs, Vector2 rhs)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float2 operator *(AffineTransform lhs, float2 rhs)
     {
-        return lhs.linear * rhs + lhs.offset;
+        return math.mul(lhs.linear, rhs) + lhs.offset;
     }
 
     public static AffineTransform From3(
@@ -74,12 +77,11 @@ public class AffineTransform
         (Vector2 from, Vector2 to) c
     )
     {
-        var toVertex = new Matrix2x2(b.from - a.from, c.from - a.from);
-        var toUV = new Matrix2x2(b.to - a.to, c.to - a.to);
-        var fromVertex = toVertex.Inverse;
-        if (fromVertex == null) return null;
-        var vertexToUVDiff = toUV * fromVertex;
-        var baseUV = a.to - vertexToUVDiff * a.from;
+        var toVertex = new float2x2(b.from - a.from, c.from - a.from);
+        var toUV = new float2x2(b.to - a.to, c.to - a.to);
+        var fromVertex = math.inverse(toVertex);
+        var vertexToUVDiff = math.mul(toUV, fromVertex);
+        var baseUV = new float2(a.to) - math.mul(vertexToUVDiff, a.from);
         return new(vertexToUVDiff, baseUV);
     }
 }
@@ -111,6 +113,7 @@ public abstract class UVFace
         return WithTransform(new(vertexToUV.linear * scale, vertexToUV.offset));
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Vector2 GetUV(Vector3 vertex)
     {
         return vertexToUV * Project(vertex);
@@ -174,7 +177,6 @@ public abstract class UVFace
     {
         public Z(Vector3Int _normal, AffineTransform _vertexToUV)
             : base(_normal, _vertexToUV) { }
-
         protected override Vector2 Project(Vector3 p) => new(p.x, p.y);
         protected override UVFace WithTransform(AffineTransform a) => new Z(normal, a);
 
@@ -208,7 +210,8 @@ public class UVFaces
     {
         return faces[normal];
     }
-
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public UVFace GetFace(Vector3 normal)
     {
         if (normal.sqrMagnitude < 1.0) normal = new(1, 0, 0);
