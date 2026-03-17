@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     static public bool gameWon = false;
     private Rigidbody rb;
+    private Animator anim;
 
     [SerializeField] float stickTurnSpeed;
     [SerializeField] float maxHorizontalSpeed;
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
@@ -83,6 +85,12 @@ public class Player : MonoBehaviour
             return;
         }
         UpdateBow();
+
+        // Speed, IsGrounded update
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        anim.SetFloat("Speed", horizontalVelocity.magnitude);
+        anim.SetBool("IsGrounded", IsOnGround());
+
         // turn
         transform.rotation = Quaternion.Euler(0f, transform.eulerAngles.y + turnControl.x * turnSpeed, 0f);
         camera.transform.localRotation = Quaternion.Euler(camera.transform.localEulerAngles.x - turnControl.y * turnSpeed, 0f, 0f);
@@ -142,6 +150,9 @@ public class Player : MonoBehaviour
     private void UpdateBow()
     {
         float t = bowTime / maxBowTime;
+        
+        // IsDrawingBow update
+        anim.SetBool("IsDrawingBow", bowHeld);
 
         if (bowHeld)
         {
@@ -161,7 +172,11 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (arrow.activeSelf) LaunchArrow(t);
+            if (arrow.activeSelf){
+                LaunchArrow(t);
+                // trigger FireArrow
+                anim.SetTrigger("FireArrow");
+            }
             arrow.SetActive(false);
         }
     }
@@ -215,6 +230,9 @@ public class Player : MonoBehaviour
             {
                 hookInstance = Instantiate(hookPrefab, transform.position, transform.rotation);
                 hookInstance.SetVelocity(GetLaunchVelocity(launchVelocity));
+
+                // trigger ThrowHook
+                anim.SetTrigger("ThrowHook");
             }
         }
     }
