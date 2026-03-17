@@ -40,6 +40,7 @@ public class Player : NetworkBehaviour
     private Vector2 turnControl;
     
     private LineRenderer lineRenderer;
+    private PlayerInput playerInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -47,15 +48,18 @@ public class Player : NetworkBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
-        if (!IsOwner) {
-            print("disable_called");
-            camera.enabled = false;
-        }
     }
 
-    public override void OnNetworkSpawn()//void Start()
+    public override void OnNetworkSpawn()
     {
-        print("called");
+        if (IsOwner)
+        {
+            playerInput = GetComponent<PlayerInput>();
+            playerInput.enabled = true;
+        } else {
+            camera.enabled = false;
+            camera.GetComponent<AudioListener>().enabled = false;
+        }
     }
 
     void Update()
@@ -122,9 +126,6 @@ public class Player : NetworkBehaviour
 
     private void LaunchArrow(float strength)
     {
-        if (!IsOwner) {
-            return;
-        }
         var launched = Instantiate(arrow, arrow.transform.parent);
         launched.transform.parent = null;
         var rb = launched.AddComponent<Rigidbody>();
@@ -138,9 +139,6 @@ public class Player : NetworkBehaviour
     // Controls
     private void UpdateBow()
     {
-        if (!IsOwner) {
-            return;
-        }
         float t = bowTime / maxBowTime;
 
         if (fireAction.action.IsPressed())
