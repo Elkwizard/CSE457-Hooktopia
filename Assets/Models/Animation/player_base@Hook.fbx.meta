@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca9fc14816380be479f26c06394ef88d
+guid: 7c6f82ee62803914d9084576f2ba497e
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -260,18 +260,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: player_base_rigged(Clone)
+    - name: player_red(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: red_head
-      parentName: player_base_rigged(Clone)
+      parentName: player_red(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: player_base_rigged(Clone)
+      parentName: player_red(Clone)
       position: {x: -0.000010561333, y: 2.2120996, z: 0.018314756}
       rotation: {x: 0.00000025948336, y: -0.0000014357496, z: 0.000048926966, w: 1}
       scale: {x: 1, y: 1, z: 1}

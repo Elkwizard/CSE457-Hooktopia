@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     void Start() {
         rb = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        anim.SetBool("IsGrounded", true);
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
