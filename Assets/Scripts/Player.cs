@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     private Vector2 horizontalControl;
     private Vector2 turnControl;
     private bool turnIsDelta = false;
-    
+
     private LineRenderer lineRenderer;
     private PlayerInput playerInput;
     public PlayerManager manager;
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
 
         // add acceleration
         Vector3 additionalVector = (transform.rotation * new Vector3(horizontalControl.x, 0, horizontalControl.y)).normalized;
-        Vector3 oldXZVelocity = new (rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 oldXZVelocity = new(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 newVelocity = oldXZVelocity + acceleration * Time.deltaTime * additionalVector;
         // cap speed
         if (newVelocity.magnitude > maxHorizontalSpeed)
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
             Vector3 difference = hookInstance.transform.position - transform.position;
             if (difference.magnitude > maxHookDist || hookInstance.IsLoose())
             {
-                Unhook();
+                DestroyHook();
             }
             else if (hookInstance.IsHooked())
             {
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     private void UpdateBow()
     {
         float t = bowTime / maxBowTime;
-        
+
         // IsDrawingBow update
         anim.SetBool("IsDrawingBow", bowHeld);
 
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (arrow.activeSelf){
+            if (arrow.activeSelf) {
                 LaunchArrow(t);
                 // trigger FireArrow
                 anim.SetTrigger("FireArrow");
@@ -216,16 +216,16 @@ public class Player : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-
             if (hookInstance)
             {
                 if (hookInstance.IsHooked())
                 {
+
                     var toHook = hookInstance.transform.position - transform.position;
                     toHook *= toHook.magnitude;
                     yanked = yankPower * toHook;
                 }
-                Unhook();
+                DestroyHook();
             }
             else
             {
@@ -243,10 +243,20 @@ public class Player : MonoBehaviour
         return camera.transform.rotation * launchVelocity + rb.linearVelocity;
     }
 
-    public void Unhook()
+    public void Unhook(InputAction.CallbackContext context) {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            DestroyHook();
+        }
+    }
+
+    private void DestroyHook()
     {
-        Destroy(hookInstance.gameObject);
-        hookInstance = null;
+        if (hookInstance != null)
+        {
+            Destroy(hookInstance.gameObject);
+            hookInstance = null;
+        }
     }
 
     private bool IsOnGround()
