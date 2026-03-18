@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         lineRenderer = GetComponent<LineRenderer>();
         Cursor.lockState = CursorLockMode.Locked;
         bowTime = 0;
@@ -84,8 +84,9 @@ public class Player : MonoBehaviour
         UpdateBow();
 
         // Speed, IsGrounded update
-        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-        anim.SetFloat("Speed", horizontalVelocity.magnitude);
+        float inputMagnitude = horizontalControl.magnitude;
+        float animationSpeed = inputMagnitude > 0.1f ? 5.0f : 0.0f;
+        anim.SetFloat("Speed", animationSpeed);
         anim.SetBool("IsGrounded", IsOnGround());
 
         // turn
