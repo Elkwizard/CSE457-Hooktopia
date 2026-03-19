@@ -87,7 +87,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ThrowHook
-  m_Speed: 2
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3189701255898101001}
@@ -100,7 +100,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: b558cd9d0d905aa4798a23da276d6659, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 7c6f82ee62803914d9084576f2ba497e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
